@@ -17,7 +17,7 @@ import android.widget.ImageView;
 public class mainMenu extends AppCompatActivity {
 
 
-    private Button playButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
