@@ -15,20 +15,39 @@
             android:id="@+id/background_one"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/backgroundimage360noscopexxxx"/>
+            android:src="@drawable/backgroundsmall"/>
 
         <ImageView
             android:id="@+id/background_two"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/backgroundimage360noscopexxxx"/>
+            android:src="@drawable/backgroundsmall"/>
 
         <Button
             android:id="@+id/button"
-            android:layout_gravity="center"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PLAY" />
+            android:layout_gravity="center"
+            android:background="@android:color/holo_orange_dark"
+            android:lineSpacingExtra="8sp"
+            android:onClick="playButtonClicked"
+            android:text="PLAY"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="clip_horizontal"
+            android:fontFamily="monospace"
+            android:text="SCUMBAG PUG"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
 
     </FrameLayout>
 
