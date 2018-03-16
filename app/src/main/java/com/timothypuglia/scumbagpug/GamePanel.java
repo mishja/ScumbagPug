@@ -15,7 +15,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public static final int HEIGHT = 1080;
     private MainThread thread;
     private Background bg;
+    private Background bg2;
 
+    
     public GamePanel(Context context){
 
         super(context);
@@ -53,12 +55,23 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.backgroundsmall));
         bg.setVector(-5);
+        bg2 = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.clouds));
+        bg2.setVector(-2);
         //we can safely start the game loop
         thread.setRunning(true);
         thread.start();
 
     }
-
+    // yannic gaat nu beunen
+//    public void surfaceCreated2(SurfaceHolder holder){
+//
+//
+//        //we can safely start the game loop
+//        thread.setRunning(true);
+//        thread.start();
+//
+//    }
+    // yannic heeft tot hier gebeund
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return super.onTouchEvent(event);

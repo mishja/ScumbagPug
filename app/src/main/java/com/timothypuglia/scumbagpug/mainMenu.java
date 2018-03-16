@@ -39,7 +39,6 @@ public class mainMenu extends AppCompatActivity {
         //SET CONTEXT
         setContentView(R.layout.activity_game);
 
-
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
         final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f);
@@ -59,6 +58,27 @@ public class mainMenu extends AppCompatActivity {
         });
         animator.start();
 
+        final ImageView backgroundOne2 = (ImageView) findViewById(R.id.background_one2);
+        final ImageView backgroundTwo2 = (ImageView) findViewById(R.id.background_two2);
+        final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -0.5f);
+        animator2.setRepeatCount(ValueAnimator.INFINITE);
+        animator2.setInterpolator(new LinearInterpolator());
+        animator2.setDuration(10000L);
+
+        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                final float progress = (float) animation.getAnimatedValue();
+                final float width = backgroundOne2.getWidth();
+                final float translationX = width * progress;
+                backgroundOne2.setTranslationX(translationX);
+                backgroundTwo2.setTranslationX(translationX + width);
+            }
+        });
+        animator2.start();
+
+       // final ImageView backgroundthree = (ImageView) findViewById(R.id.background_three);
+       // final float width = backgroundthree.getWidth();
     }
 
     public void playButtonClicked(View view){
