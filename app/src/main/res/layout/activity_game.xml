@@ -12,6 +12,12 @@
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/background_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background"/>
+
+        <ImageView
             android:id="@+id/background_one"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,6 +28,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/backgroundsmall"/>
+
+        <ImageView
+            android:id="@+id/background_one2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/clouds"/>
+
+        <ImageView
+            android:id="@+id/background_two2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/clouds"/>
+
+
 
         <Button
             android:id="@+id/button"
