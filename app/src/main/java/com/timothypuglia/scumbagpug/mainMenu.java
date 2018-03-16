@@ -63,7 +63,7 @@ public class mainMenu extends AppCompatActivity {
         final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -0.5f);
         animator2.setRepeatCount(ValueAnimator.INFINITE);
         animator2.setInterpolator(new LinearInterpolator());
-        animator2.setDuration(10000L);
+        animator2.setDuration(20000L);
 
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
