@@ -25,6 +25,7 @@ public class mainMenu extends AppCompatActivity {
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        
         //set to full screen
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
