@@ -9,18 +9,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background">
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="168dp"
-        android:text="Back"
-        android:onClick="backButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/background"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteY="0dp"
+        >
 
+        <Button
+            android:id="@+id/button"
+
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="280dp"
+            android:background="@drawable/buttonshape"
+
+            android:onClick="scoreButtonClicked"
+            android:shadowColor="#828F86"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="BACK"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
 
     </LinearLayout>
