@@ -60,16 +60,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         thread.start();
 
     }
-    // yannic gaat nu beunen
-//    public void surfaceCreated2(SurfaceHolder holder){
-//
-//
-//        //we can safely start the game loop
-//        thread.setRunning(true);
-//        thread.start();
-//
-//    }
-    // yannic heeft tot hier gebeund
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return super.onTouchEvent(event);

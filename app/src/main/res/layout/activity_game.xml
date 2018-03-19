@@ -97,6 +97,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
+            <AutoCompleteTextView
+                android:id="@+id/player1NameATV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Type in the name of player 1"/>
+
         </LinearLayout>
 
 

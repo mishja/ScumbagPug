@@ -38,10 +38,14 @@ public class ScoreBoard extends Activity {
     }
 
     //Button back to main menu
-    public void backButton(View view) {
+    public void scoreButtonClicked(View view) {
         Intent intent2 = new Intent(this, mainMenu.class);
         startActivity(intent2);
 
         }
+    public void enternameButton(View view){
+
+
+    }
 
     }
