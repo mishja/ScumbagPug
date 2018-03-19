@@ -14,7 +14,7 @@ import android.widget.ImageView;
 
 
 
-public class mainMenu extends AppCompatActivity {
+public class mainMenu extends Activity {
 
 
 
@@ -88,5 +88,8 @@ public class mainMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void scoreButtonClicked(View view){
+        Intent intent2 = new Intent(this, ScoreBoard.class);
+        startActivity(intent2);
+    }
 }

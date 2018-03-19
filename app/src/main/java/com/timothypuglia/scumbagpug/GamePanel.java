@@ -13,12 +13,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
-    public static final int MOVESPEED = -5;
     private MainThread thread;
     private Background bg;
-    private Background bg2;
 
-
+    
     public GamePanel(Context context){
 
         super(context);
@@ -29,7 +27,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
         thread = new MainThread(getHolder(), this);
 
-        //make gamePanel focusable so it can handle events
+        //make gamePanel focusable so i tcan handle events
         setFocusable(true);
     }
 
@@ -54,15 +52,24 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceCreated(SurfaceHolder holder){
 
-        bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.backgroundsmall));
-        bg2 = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.clouds));
+        bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.fuckinggoeiebackgroundgvd));
+        bg.setVector(-5);
 
         //we can safely start the game loop
         thread.setRunning(true);
         thread.start();
 
     }
-
+    // yannic gaat nu beunen
+//    public void surfaceCreated2(SurfaceHolder holder){
+//
+//
+//        //we can safely start the game loop
+//        thread.setRunning(true);
+//        thread.start();
+//
+//    }
+    // yannic heeft tot hier gebeund
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return super.onTouchEvent(event);
@@ -71,21 +78,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void update(){
 
         bg.update();
-        bg2.update();
 
     }
 
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
-        final float scaleFactorX = getWidth()/(WIDTH*1.0f);
-        final float scaleFactorY = getHeight()/(HEIGHT*1.0f);
+        final float scaleFactorX = getWidth()/WIDTH;
+        final float scaleFactorY = getHeight()/HEIGHT;
 
         if (canvas!=null) {
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
-            bg2.draw(canvas);
             canvas.restoreToCount(savedState);
         }
     }
