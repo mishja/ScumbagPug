@@ -7,6 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 
+//----------------------------------------------
+//
+//   THIS IS THE LEADERBOARD ACTIVITY
+//   WITH THE LAYOUT activity_score.xml
+//
+//----------------------------------------------
+
+
 public class ScoreBoard extends Activity {
 
     @Override
@@ -29,10 +37,15 @@ public class ScoreBoard extends Activity {
         setContentView(R.layout.activity_score);
     }
 
-    public void backButton(View view) {
+    //Button back to main menu
+    public void scoreButtonClicked(View view) {
         Intent intent2 = new Intent(this, mainMenu.class);
         startActivity(intent2);
 
         }
+    public void enternameButton(View view){
+
+
+    }
 
     }

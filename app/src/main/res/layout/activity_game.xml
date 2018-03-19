@@ -12,6 +12,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp">
 
+
         <ImageView
             android:id="@+id/background_three"
             android:layout_width="match_parent"
@@ -57,7 +58,7 @@
                 android:text="SCUMBAG PUG"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_orange_dark"
-                android:textSize="36sp"
+                android:textSize="54sp"
                 android:textStyle="bold"
                 android:typeface="monospace" />
 
@@ -95,6 +96,16 @@
                 android:text="Leaderboard"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/player1NameATV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Type in the name of player 1"/>
 
         </LinearLayout>
 
