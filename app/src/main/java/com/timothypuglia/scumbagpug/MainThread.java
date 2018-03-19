@@ -8,7 +8,6 @@ public class MainThread extends Thread{
     private int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
-    private SurfaceHolder surfaceHolder2;
     private GamePanel gamePanel;
     private boolean running;
     public static Canvas canvas;
@@ -17,8 +16,10 @@ public class MainThread extends Thread{
         super();
         this.surfaceHolder = surfaceHolder;
         this.gamePanel = gamePanel;
+        }
 
-    }
+
+
 
     @Override
     public void run(){
@@ -40,6 +41,9 @@ public class MainThread extends Thread{
 
                     this.gamePanel.update();
                     this.gamePanel.draw(canvas);
+//                    this.gamePanel2.update();
+//                    this.gamePanel2.draw(canvas);
+
                 }
             } catch (Exception e) {
             }

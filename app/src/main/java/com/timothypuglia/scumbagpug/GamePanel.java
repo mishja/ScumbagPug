@@ -16,8 +16,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public static final int MOVESPEED = -5;
     private MainThread thread;
     private Background bg;
+    private Background bg2;
 
-    
+
     public GamePanel(Context context){
 
         super(context);
@@ -28,7 +29,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
         thread = new MainThread(getHolder(), this);
 
-        //make gamePanel focusable so i tcan handle events
+        //make gamePanel focusable so it can handle events
         setFocusable(true);
     }
 
@@ -54,22 +55,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void surfaceCreated(SurfaceHolder holder){
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.backgroundsmall));
+        bg2 = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.clouds));
 
         //we can safely start the game loop
         thread.setRunning(true);
         thread.start();
 
     }
-    // yannic gaat nu beunen
-//    public void surfaceCreated2(SurfaceHolder holder){
-//
-//
-//        //we can safely start the game loop
-//        thread.setRunning(true);
-//        thread.start();
-//
-//    }
-    // yannic heeft tot hier gebeund
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         return super.onTouchEvent(event);
@@ -78,6 +71,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void update(){
 
         bg.update();
+        bg2.update();
 
     }
 
@@ -91,6 +85,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
+            bg2.draw(canvas);
             canvas.restoreToCount(savedState);
         }
     }

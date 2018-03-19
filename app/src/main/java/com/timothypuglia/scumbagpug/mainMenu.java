@@ -39,12 +39,13 @@ public class mainMenu extends AppCompatActivity {
         //SET CONTEXT
         setContentView(R.layout.activity_game);
 
+        // these are the trees
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
-        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f);
+        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f); //MISCHA AFBLIJVEN
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setInterpolator(new LinearInterpolator());
-        animator.setDuration(10000L);
+        animator.setDuration(8000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE BOMEN. HOGER IS TRAGER
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -58,12 +59,13 @@ public class mainMenu extends AppCompatActivity {
         });
         animator.start();
 
+        // these are the clouds
         final ImageView backgroundOne2 = (ImageView) findViewById(R.id.background_one2);
         final ImageView backgroundTwo2 = (ImageView) findViewById(R.id.background_two2);
-        final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -0.5f);
+        final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -1.0f);//MISCHA AFBLIJVEN
         animator2.setRepeatCount(ValueAnimator.INFINITE);
         animator2.setInterpolator(new LinearInterpolator());
-        animator2.setDuration(20000L);
+        animator2.setDuration(20000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE WOLKEN. HOGER IS TRAGER
 
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
