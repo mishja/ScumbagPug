@@ -50,10 +50,6 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             />
-            <!--android:layout_marginTop="200dp"-->
-            <!--android:background="@drawable/buttonshape"-->
-            <!--android:text="player" />-->
-
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
