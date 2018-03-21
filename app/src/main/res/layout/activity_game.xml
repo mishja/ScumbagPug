@@ -121,9 +121,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
+                android:textAlignment="center"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:hint="Type in the name of player 1"/>
+                android:hint="Unknown Player"/>
 
 
 

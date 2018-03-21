@@ -26,4 +26,5 @@ public class Background {
             canvas.drawBitmap(image, x+GamePanel.WIDTH, y, null);
         }
     }
+
 }
