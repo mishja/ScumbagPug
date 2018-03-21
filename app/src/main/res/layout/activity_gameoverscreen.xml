@@ -10,41 +10,43 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="62dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Game Over"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textSize="30sp"/>
+            android:text="Game Over"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/scoreLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="150"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textSize="30sp"/>
+            android:text="150"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/highScoreLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="high score 300"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textSize="30sp"/>
+            android:text="high score 300"
+            android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Try Again"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:onClick="tryAgain"/>
+            android:onClick="tryAgain"
+            android:text="Try Again" />
 
     </LinearLayout>
 

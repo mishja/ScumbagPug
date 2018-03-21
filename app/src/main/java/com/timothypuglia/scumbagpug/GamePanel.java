@@ -83,13 +83,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             if (!player.getPlaying()){
                 player.setPlaying(true);
             }
-            else{
-                player.setUp(true);}
+            else {
+                player.setJumping(true);
+            }
             return true;
         }
         if(event.getAction()==MotionEvent.ACTION_UP){
             System.out.println("Let go");
-            player.setUp(false);
             return true;
         }
         return super.onTouchEvent(event);
@@ -102,13 +102,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //            Add houses on timer
             long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
             if (housesElapsed>(2000-player.getScore()/4)){
-//                first house down the middle
+//                //first house down the middle
                 System.out.println("Mischa is een pisnicht");
                 if(houses.size()==0){
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT/4*3,240,135, player.getScore(),13));
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.missile),WIDTH+10,HEIGHT/4*3,45,15, player.getScore(),13));
                 }
                 else {
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),13));
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.missile),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),45,15, player.getScore(),13));
                 }
                 housesStartTime = System.nanoTime();
             }
