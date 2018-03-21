@@ -128,6 +128,28 @@
 
 
 
+
+
+            <!--ga naar game-overmenu-->
+            <Button
+                android:id="@+id/button"
+
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"
+
+                android:onClick="deadButtonClicked"
+                android:shadowColor="#828F86"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="Fkn Dead"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
+
+
         </LinearLayout>
 
 

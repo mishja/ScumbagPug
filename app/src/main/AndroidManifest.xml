@@ -12,7 +12,7 @@
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".mainMenu"
             android:screenOrientation="landscape">
@@ -28,7 +28,8 @@
         <activity
             android:name=".ScoreBoard"
             android:screenOrientation="landscape" />
-        <activity android:name=".NameActivity"></activity>
+        <activity android:name=".NameActivity" />
+        <activity android:name=".gameoverscreen"></activity>
     </application>
 
 </manifest>

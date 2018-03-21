@@ -81,12 +81,6 @@ public class mainMenu extends Activity {
         });
         animator2.start();
 
-       // final ImageView backgroundthree = (ImageView) findViewById(R.id.background_three);
-       // final float width = backgroundthree.getWidth();
-//
-//       private Button submitNamebutton;
-//       submitNamebutton= findViewById(R.id.player1NameATV);
-
     }
 
     public void playButtonClicked(View view){
@@ -101,10 +95,27 @@ public class mainMenu extends Activity {
         startActivity(intent2);
     }
 
-//    public void submitName (View view){
-//        Intent intent3 = new Intent(this, NameActivity.class);
-//        intent.putExtra("winnerId", fourInARowGame.getResult());
-//        startActivity(intent3);
+    public void deadButtonClicked(View view){
+        Intent intent3 = new Intent(getApplicationContext(),gameoverscreen.class);
+//        intent3.putExtra("SCORE",score)
+        startActivity(intent3);
+    }
+
+    //if you're dead:
+
+//    {
+//        timer.cancel();
+//        timer=null;
+//
+//        Intent intent new Intent(getApplicationContext(),result.class);
+//        intent.putExtra("SCORE",score);
+//        startActivity(intent);
+//
+//
+//
+//
 //    }
+
+
 
 }
