@@ -11,23 +11,24 @@
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity
             android:screenOrientation="landscape"
-            android:name=".mainMenu">
-
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".mainMenu"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Game"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".ScoreBoard"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Game"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ScoreBoard"
+            android:screenOrientation="landscape" />
+        <activity android:name=".NameActivity"></activity>
     </application>
 
 </manifest>

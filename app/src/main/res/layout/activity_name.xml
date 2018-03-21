@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.timothypuglia.scumbagpug.NameActivity">
+
+
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+<TextView
+    android:id="@+id/player1NameTV"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:labelFor="@+id/player1NameET"
+    android:text="Player 1"/>
+
+<AutoCompleteTextView
+    android:id="@+id/player1NameATV"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:hint="Type in the name of player 1"/>
+
+<TextView
+    android:id="@+id/player2NameTV"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:labelFor="@+id/player2NameET"
+    android:text="Player 2"/>
+
+
+<AutoCompleteTextView
+    android:id="@+id/player2NameATV"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:hint="Type in the name of player 2"/>
+
+</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

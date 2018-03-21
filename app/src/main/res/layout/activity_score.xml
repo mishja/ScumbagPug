@@ -11,10 +11,8 @@
         android:layout_height="match_parent"
         android:background="@drawable/background"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="0dp"
-        >
-
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="0dp">
 
 
         <Button
@@ -35,6 +33,26 @@
             android:text="BACK"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/text_view_id_jeej"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+
+            android:background="@drawable/buttonshape"
+
+            android:shadowColor="#828F86"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="sdfsdf"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            />
+            <!--android:layout_marginTop="200dp"-->
+            <!--android:background="@drawable/buttonshape"-->
+            <!--android:text="player" />-->
 
 
     </LinearLayout>

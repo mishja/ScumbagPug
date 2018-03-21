@@ -5,10 +5,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsMessage;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -16,7 +18,7 @@ import android.widget.ImageView;
 
 public class mainMenu extends Activity {
 
-
+    public AutoCompleteTextView player1NameATV;
 
 
     @Override
@@ -81,6 +83,10 @@ public class mainMenu extends Activity {
 
        // final ImageView backgroundthree = (ImageView) findViewById(R.id.background_three);
        // final float width = backgroundthree.getWidth();
+//
+//       private Button submitNamebutton;
+//       submitNamebutton= findViewById(R.id.player1NameATV);
+
     }
 
     public void playButtonClicked(View view){
@@ -89,7 +95,16 @@ public class mainMenu extends Activity {
     }
 
     public void scoreButtonClicked(View view){
+        player1NameATV = findViewById(R.id.player1NameATV);
         Intent intent2 = new Intent(this, ScoreBoard.class);
+       intent2.putExtra("playerName",player1NameATV.getText().toString());
         startActivity(intent2);
     }
+
+//    public void submitName (View view){
+//        Intent intent3 = new Intent(this, NameActivity.class);
+//        intent.putExtra("winnerId", fourInARowGame.getResult());
+//        startActivity(intent3);
+//    }
+
 }

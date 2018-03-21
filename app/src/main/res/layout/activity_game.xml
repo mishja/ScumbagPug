@@ -79,6 +79,11 @@
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
+ <!--we hebben een button.
+ als je daarop klikt zegt hij "scoreButtonClicked".
+ in je mainMenu.java triggert "scoreButtonClicked" een intent die de ScoreBoard.java opstart.
+ nu wil ik ook nog de informatie meenemen uit het tekstvak onder de button.
+ -->
             <Button
                 android:id="@+id/buttonScore"
 
@@ -97,6 +102,19 @@
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
+            <!--<Button-->
+                <!--android:id="@+id/submit_name"-->
+
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/buttonshape"-->
+
+                <!--android:onClick="submitName"-->
+                <!--android:text="put your name here"-->
+                <!--/>-->
+
             <AutoCompleteTextView
                 android:id="@+id/player1NameATV"
                 android:layout_width="wrap_content"
@@ -106,6 +124,8 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="Type in the name of player 1"/>
+
+
 
         </LinearLayout>
 

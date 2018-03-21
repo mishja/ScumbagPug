@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 //----------------------------------------------
 //
@@ -16,6 +19,9 @@ import android.view.Window;
 
 
 public class ScoreBoard extends Activity {
+
+    private String playerName;
+    private TextView textView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,13 @@ public class ScoreBoard extends Activity {
 
         //SET CONTEXT
         setContentView(R.layout.activity_score);
+        playerName = getIntent().getStringExtra("playerName");
+
+        textView2=findViewById(R.id.text_view_id_jeej);
+
+        textView2.setText(playerName);
+
+
     }
 
     //Button back to main menu
@@ -43,9 +56,7 @@ public class ScoreBoard extends Activity {
         startActivity(intent2);
 
         }
-    public void enternameButton(View view){
-
-
-    }
+   // public void enternameButton(View view){
+    // }
 
     }
