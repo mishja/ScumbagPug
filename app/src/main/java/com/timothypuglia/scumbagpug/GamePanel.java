@@ -4,10 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
@@ -15,9 +19,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
     public static final int MOVESPEED = -5;
+    private long housesStartTime;
+    private long housesElapsed;
     private MainThread thread;
     private Background bg;
     private Player player;
+    private ArrayList<Houses> houses;
+    private Random rand = new Random();
 
 
     public GamePanel(Context context){
@@ -42,23 +50,27 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void surfaceDestroyed(SurfaceHolder holder) {
 
         boolean retry = true;
-        while (retry) {
+        int counter = 0;
+        while (retry && counter<1000) {
+            counter++;
             try {
                 thread.setRunning(false);
                 thread.join();
+                retry = false;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            retry = false;
+
         }
     }
     @Override
     public void surfaceCreated(SurfaceHolder holder){
 
-        bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.fuckinggoeiebackgroundgvd));
+        bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
         player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.helicopter),65, 25, 3);
         //we can safely start the game loop
-
+        houses = new ArrayList<Houses>();
+        housesStartTime = System.nanoTime();
         thread.setRunning(true);
         thread.start();
 
@@ -71,9 +83,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             if (!player.getPlaying()){
                 player.setPlaying(true);
             }
-            else {
-                player.setUp(true);
-            }
+            else{
+                player.setUp(true);}
             return true;
         }
         if(event.getAction()==MotionEvent.ACTION_UP){
@@ -88,8 +99,42 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         if (player.getPlaying()) {
             bg.update();
             player.update();
+//            Add houses on timer
+            long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
+            if (housesElapsed>(2000-player.getScore()/4)){
+//                first house down the middle
+                System.out.println("Mischa is een pisnicht");
+                if(houses.size()==0){
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT/4*3,240,135, player.getScore(),13));
+                }
+                else {
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),13));
+                }
+                housesStartTime = System.nanoTime();
+            }
+//            Loop through every house for collision
+            for (int i=0; i<houses.size();i++){
+                houses.get(i).update();
+                if (collision(houses.get(i),player)){
+                    houses.remove(i);
+                    player.setPlaying(false);
+                    break;
+                }
+//                Remove missle when far off the screen
+                if(houses.get(i).getX()<-100){
+                    houses.remove(i);
+                    break;
+                }
+            }
         }
 
+    }
+
+    public boolean collision(GameObject a, GameObject b){
+        if (Rect.intersects(a.getRectangle(),b.getRectangle())){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -103,6 +148,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
             player.draw(canvas);
+
+            for (Houses h: houses){
+                h.draw(canvas);
+            }
 
 
             canvas.restoreToCount(savedState);
