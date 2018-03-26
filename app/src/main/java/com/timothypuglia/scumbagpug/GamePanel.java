@@ -123,6 +123,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     houses.remove(i);
                     player.setPlaying(false);
                     Intent intent = new Intent(mContext,gameoverscreen.class);
+                    
                     intent.putExtra("playerScore",player.getScore());
                     mContext.startActivity(intent);
                     break;
