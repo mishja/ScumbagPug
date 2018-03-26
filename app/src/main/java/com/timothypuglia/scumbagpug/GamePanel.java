@@ -1,6 +1,7 @@
 package com.timothypuglia.scumbagpug;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -118,6 +119,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                 if (collision(houses.get(i),player)){
                     houses.remove(i);
                     player.setPlaying(false);
+//                    Intent intent = new Intent(this, gameoverscreen.class);
+//                    startActivity(intent);
                     break;
                 }
 //                Remove missle when far off the screen
