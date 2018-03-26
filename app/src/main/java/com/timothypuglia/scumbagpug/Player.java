@@ -58,7 +58,7 @@ public class Player extends GameObject{
 
         if(!falling){
             jumping=b;
-            System.out.println("I set jumping to true ");
+            System.out.println("I set jumping true ");
         }
 
     }
