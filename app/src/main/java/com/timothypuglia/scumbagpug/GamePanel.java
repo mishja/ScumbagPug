@@ -1,11 +1,13 @@
 package com.timothypuglia.scumbagpug;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -119,8 +121,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                 if (collision(houses.get(i),player)){
                     houses.remove(i);
                     player.setPlaying(false);
-//                    Intent intent = new Intent(this, gameoverscreen.class);
-//                    startActivity(intent);
+
                     break;
                 }
 //                Remove missle when far off the screen
@@ -132,6 +133,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         }
 
     }
+
+
 
     public boolean collision(GameObject a, GameObject b){
         if (Rect.intersects(a.getRectangle(),b.getRectangle())){
@@ -160,4 +163,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             canvas.restoreToCount(savedState);
         }
     }
+
+
+
 }
+
