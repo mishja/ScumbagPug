@@ -33,7 +33,7 @@ public class Player extends GameObject{
         y = GamePanel.HEIGHT /4*3-height;
 
         width = w;
-        gravity = 0.40;
+        gravity = 0.20;
         jumpStart =-11.0;
         maxFallingSpeed = 12;
 

@@ -70,7 +70,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void surfaceCreated(SurfaceHolder holder){
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
-        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.helicopter),65, 25, 3);
+        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.pug),297, 296, 1);
         //we can safely start the game loop
         houses = new ArrayList<Houses>();
         housesStartTime = System.nanoTime();
@@ -109,11 +109,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //                //first house down the middle
                 System.out.println("Daar komt een huisje!");
                 if(houses.size()==0){
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.missile),WIDTH+10,HEIGHT/4*3,45,15, player.getScore(),13));
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT-((HEIGHT/8)+270),240,135, player.getScore(),1));
                 }
-                else {
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.missile),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),45,15, player.getScore(),13));
-                }
+//                else {
+//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
+//                }
                 housesStartTime = System.nanoTime();
             }
 //            Loop through every house for collision
