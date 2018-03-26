@@ -29,12 +29,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private Player player;
     private ArrayList<Houses> houses;
     private Random rand = new Random();
-
+    private Context mContext;
 
     public GamePanel(Context context){
 
         super(context);
-
+        this.mContext = getContext();
 
         //add the callback to the surfaceholder to intercept events
         getHolder().addCallback(this);
@@ -102,11 +102,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         if (player.getPlaying()) {
             bg.update();
             player.update();
+            System.out.println(player.getScore());
 //            Add houses on timer
             long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
             if (housesElapsed>(2000-player.getScore()/4)){
 //                //first house down the middle
-                System.out.println("Mischa is een pisnicht");
+                System.out.println("Daar komt een huisje!");
                 if(houses.size()==0){
                     houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.missile),WIDTH+10,HEIGHT/4*3,45,15, player.getScore(),13));
                 }
@@ -121,7 +122,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                 if (collision(houses.get(i),player)){
                     houses.remove(i);
                     player.setPlaying(false);
-
+                    Intent intent = new Intent(mContext,gameoverscreen.class);
+                    intent.putExtra("playerScore",player.getScore());
+                    mContext.startActivity(intent);
                     break;
                 }
 //                Remove missle when far off the screen

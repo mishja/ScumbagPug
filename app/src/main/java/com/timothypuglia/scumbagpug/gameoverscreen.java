@@ -37,9 +37,9 @@ public class gameoverscreen extends Activity {
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel =(TextView) findViewById(R.id.highScoreLabel);
 
-        int score =getIntent().getIntExtra("SCORE",0);
+        int score =getIntent().getIntExtra("playerScore",0);
         scoreLabel.setText(score+"");
-
+        System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
         int highScore = settings.getInt("HIGH_SCORE",0);
 
