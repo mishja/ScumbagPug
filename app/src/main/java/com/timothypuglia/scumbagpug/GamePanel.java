@@ -1,7 +1,10 @@
 package com.timothypuglia.scumbagpug;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -70,7 +73,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public void surfaceCreated(SurfaceHolder holder){
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
-        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.pug),297, 296, 1);
+        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.rollendepug),60, 55, 3);
         //we can safely start the game loop
         houses = new ArrayList<Houses>();
         housesStartTime = System.nanoTime();
@@ -122,6 +125,20 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                 if (collision(houses.get(i),player)){
                     houses.remove(i);
                     player.setPlaying(false);
+
+//                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+//                    alertDialog.setTitle("Alert");
+//                    alertDialog.setMessage("Alert message to be shown");
+//                    Aler.setContentView(R.layout.fragment_layout);
+//                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                    alertDialog.show();
+
+
                     Intent intent = new Intent(mContext,gameoverscreen.class);
 
                     intent.putExtra("playerScore",player.getScore());

@@ -19,7 +19,7 @@ public class Houses extends GameObject{
         height=h;
         score = s;
 
-        speed = 7+(int) (rand.nextDouble()*score/30);
+        speed = 10+(int) (rand.nextDouble()*score/30);
 
         if(speed>40) speed = 40;
 

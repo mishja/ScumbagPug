@@ -14,6 +14,23 @@
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="0dp">
 
+        <TextView
+            android:id="@+id/text_view_id_jeej"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+
+            android:background="@drawable/buttonshape"
+
+            android:shadowColor="#828F86"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="sdfsdf"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button"
@@ -22,7 +39,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
 
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="260dp"
             android:background="@drawable/buttonshape"
 
             android:onClick="scoreButtonClicked"
@@ -34,22 +51,6 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/text_view_id_jeej"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-
-            android:background="@drawable/buttonshape"
-
-            android:shadowColor="#828F86"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="5"
-            android:text="sdfsdf"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
