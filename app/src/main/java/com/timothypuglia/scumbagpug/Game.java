@@ -11,6 +11,7 @@ import android.view.Window;
 
 public class Game extends Activity{
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

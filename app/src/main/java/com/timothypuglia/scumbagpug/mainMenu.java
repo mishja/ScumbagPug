@@ -88,6 +88,8 @@ public class mainMenu extends Activity {
         startActivity(intent);
     }
 
+
+
     public void scoreButtonClicked(View view){
         player1NameATV = findViewById(R.id.player1NameATV);
         Intent intent2 = new Intent(this, ScoreBoard.class);
@@ -95,13 +97,6 @@ public class mainMenu extends Activity {
         startActivity(intent2);
     }
 
-    public void deadButtonClicked(View view){
-        Intent intent3 = new Intent(getApplicationContext(),gameoverscreen.class);
-//        intent3.putExtra("SCORE",score)
-        startActivity(intent3);
-    }
-
-    //if you're dead:
 
 //    {
 //        timer.cancel();
