@@ -48,7 +48,7 @@ public class Player extends GameObject{
         }
 
         animation.setFrames(image);
-        animation.setDelay(10);
+        animation.setDelay(300);
         startTime = System.nanoTime();
 
     }

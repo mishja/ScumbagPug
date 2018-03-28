@@ -112,7 +112,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //                //first house down the middle
                 System.out.println("Daar komt een huisje!");
                 if(houses.size()==0){
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT-((HEIGHT/8)+270),240,135, player.getScore(),1));
+                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,135, player.getScore(),1));
                 }
 //                else {
 //                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
@@ -145,8 +145,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     mContext.startActivity(intent);
                     break;
                 }
-//                Remove missle when far off the screen
-                if(houses.get(i).getX()<-100){
+//                Remove house when far off the screen
+                if(houses.get(i).getX()<-240){
                     houses.remove(i);
                     break;
                 }
