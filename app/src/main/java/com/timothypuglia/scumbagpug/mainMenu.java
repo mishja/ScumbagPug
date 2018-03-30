@@ -39,7 +39,7 @@ public class mainMenu extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         //SET CONTEXT
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_menu);
 
         // these are the trees
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);

@@ -29,7 +29,7 @@ public class Game extends Activity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         //SET CONTEXT
-        setContentView(new GamePanel(this));
+        setContentView(R.layout.activity_game);
     }
 
     public void tryAgain(){

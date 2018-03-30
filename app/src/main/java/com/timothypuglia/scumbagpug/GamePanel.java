@@ -3,6 +3,7 @@ package com.timothypuglia.scumbagpug;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,9 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +37,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private ArrayList<Houses> houses;
     private Random rand = new Random();
     private Context mContext;
-
+    private View pauseButton;
+    
     public GamePanel(Context context){
 
         super(context);
@@ -74,6 +79,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
         player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.rollendepug),60, 55, 3);
+       // pauseButton = new pauseButton(BitmapFactory.decodeResource(getResources(), R.drawable.pauze),240,240);
         //we can safely start the game loop
         houses = new ArrayList<Houses>();
         housesStartTime = System.nanoTime();
@@ -129,7 +135,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
 //                    alertDialog.setTitle("Alert");
 //                    alertDialog.setMessage("Alert message to be shown");
-//                    Aler.setContentView(R.layout.fragment_layout);
 //                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
 //                            new DialogInterface.OnClickListener() {
 //                                public void onClick(DialogInterface dialog, int which) {
@@ -175,6 +180,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
             player.draw(canvas);
+
 
             for (Houses h: houses){
                 h.draw(canvas);
