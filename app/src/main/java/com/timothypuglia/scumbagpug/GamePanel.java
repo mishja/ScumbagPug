@@ -38,7 +38,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private Random rand = new Random();
     private Context mContext;
     private View pauseButton;
-    
+
     public GamePanel(Context context){
 
         super(context);
