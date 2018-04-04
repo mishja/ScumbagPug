@@ -142,22 +142,27 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             player.update();
 //            Add houses on timer
             long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
-            if (housesElapsed>(2000-player.getScore()/4)){
+
+            if (housesElapsed>2500){
 //                //first house down the middle
                 System.out.println("Daar komt een huisje!");
-                if(houses.size()==0){
+
                     houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,135, player.getScore(),1));
-                }
+//                } else{
+//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.dubbelhuisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,270,player.getScore(),1));
+
 //                else {
 //                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
 //                }
                 housesStartTime = System.nanoTime();
             }
 //            Loop through every house for collision
+      //      if (collision(houses,player))
+
             for (int i=0; i<houses.size();i++){
                 houses.get(i).update();
-                System.out.println(player.getY());
-                System.out.println(ground-120);
+                System.out.println("hoogte speler:  "+ player.getY());
+                System.out.println("hoogte huisje:  " +(ground-120));
                 if (collision(houses.get(i),player)){
                     if (player.getY()>ground-120){
                         System.out.println("You got hit");

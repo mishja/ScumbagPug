@@ -19,8 +19,8 @@ public class Houses extends GameObject{
         height=h;
         score = s;
 
-        speed = 10+(int) (rand.nextDouble()*score/30);
-
+       // speed = 10+(int) (rand.nextDouble()*score/30);
+        speed = 15;
         if(speed>40) speed = 40;
 
         Bitmap[] image = new Bitmap[numFrames];
