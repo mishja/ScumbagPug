@@ -32,7 +32,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public static final int MOVESPEED = -5;
     private long housesStartTime;
     private long housesElapsed;
-    private MainThread thread;
+    public MainThread thread;
     private Background bg;
     private Player player;
     private ArrayList<Houses> houses;
@@ -143,7 +143,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //            Add houses on timer
             long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
 
-            if (housesElapsed>2500){
+            if (housesElapsed>3000){
 //                //first house down the middle
                 System.out.println("Daar komt een huisje!");
 

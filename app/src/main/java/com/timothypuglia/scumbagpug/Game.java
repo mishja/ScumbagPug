@@ -14,6 +14,7 @@ public class Game extends Activity{
     private Player player;
     private Button mainMenuButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class Game extends Activity{
 
 
     public void pauseButtonClicked(View view){
-        player.setPlaying(false);
+
    //     mainMenuButton.setVisibility(view.VISIBLE);
     }
 
