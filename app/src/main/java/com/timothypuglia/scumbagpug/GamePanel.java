@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -39,9 +40,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private Context mContext;
     private View pauseButton;
 
-    public GamePanel(Context context){
 
-        super(context);
+    public GamePanel(Context context, AttributeSet attributeSet){
+        super(context,attributeSet);
         this.mContext = getContext();
 
         //add the callback to the surfaceholder to intercept events
@@ -52,6 +53,30 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         //make gamePanel focusable so i tcan handle events
         setFocusable(true);
     }
+
+
+    public GamePanel(Context context){
+        this(context,null);
+    }
+
+//    public GamePanel(Context context, AttributeSet attributeSet){
+//        this(context); // roep de constructor die geen AttributeSet ontvangt aan
+//    }
+//
+//    public GamePanel(Context context){
+//
+//        super(context);
+//        this.mContext = getContext();
+//
+//        //add the callback to the surfaceholder to intercept events
+//        getHolder().addCallback(this);
+//
+//        thread = new MainThread(getHolder(), this);
+//
+//        //make gamePanel focusable so i tcan handle events
+//        setFocusable(true);
+//    }
+
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){}
@@ -108,6 +133,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     public void update(){
+        int previousY = player.getY();
         if (player.getPlaying()) {
             bg.update();
             player.update();
@@ -129,8 +155,20 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             for (int i=0; i<houses.size();i++){
                 houses.get(i).update();
                 if (collision(houses.get(i),player)){
-                    houses.remove(i);
-                    player.setPlaying(false);
+                    if (player.getY()>previousY-135){
+                        System.out.println("You got hit");
+                        houses.remove(i);
+                        player.setPlaying(false);
+                        Intent intent = new Intent(mContext,gameoverscreen.class);
+
+                        intent.putExtra("playerScore",player.getScore());
+                        mContext.startActivity(intent);
+                        break;
+                    }else if (player.getY()>=previousY-(135+(player.getHeight()/2))){
+                        System.out.println("You are on a building");
+                        player.setY(previousY-135);
+                    }
+
 
 //                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
 //                    alertDialog.setTitle("Alert");
@@ -144,11 +182,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //                    alertDialog.show();
 
 
-                    Intent intent = new Intent(mContext,gameoverscreen.class);
 
-                    intent.putExtra("playerScore",player.getScore());
-                    mContext.startActivity(intent);
-                    break;
                 }
 //                Remove house when far off the screen
                 if(houses.get(i).getX()<-240){

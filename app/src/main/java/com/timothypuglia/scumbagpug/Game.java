@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 
 
 public class Game extends Activity{
-
+    private Player player;
+    private Button mainMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +38,12 @@ public class Game extends Activity{
         Intent intent = new Intent(this,gameoverscreen.class);
         startActivity(intent);
     }
+
+
+    public void pauseButtonClicked(View view){
+        player.setPlaying(false);
+   //     mainMenuButton.setVisibility(view.VISIBLE);
+    }
+
+
 }
