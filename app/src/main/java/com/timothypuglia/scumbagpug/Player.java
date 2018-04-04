@@ -10,12 +10,10 @@ public class Player extends GameObject{
     private Bitmap spritesheet;
     private int score;
     private boolean up;
-    private double dya;
-    private int currentY;
     private boolean playing;
     private Animation animation = new Animation();
     private long startTime;
-    private int ground;
+    public int ground;
     private boolean jumping = false;
     private boolean falling = false;
 
@@ -39,6 +37,9 @@ public class Player extends GameObject{
         //GROUND HAS TO BE CHANGED TO THE HEIGHT OF THE BUILDINGS
         ground = y;
 
+
+
+
         Bitmap[] image = new Bitmap[numFrames];
         spritesheet = res;
 
@@ -53,13 +54,22 @@ public class Player extends GameObject{
 
     }
 
-    public void setJumping(boolean b){
+    public void setGround(int ground){
+        this.ground = ground;
+    }
 
-        if(!falling){
-            jumping=b;
+    public void setJumping(boolean b) {
+
+        if (!falling) {
+            jumping = b;
             System.out.println("I set jumping true ");
         }
+    }
 
+    public void setFalling(boolean b){
+        if (!jumping){
+            falling = b;
+        }
     }
     public void setUp(boolean b){up = b;}
 
