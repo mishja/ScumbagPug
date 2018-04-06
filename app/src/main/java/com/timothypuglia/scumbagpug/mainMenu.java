@@ -14,7 +14,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 
-
+//private Map<String, Integer> playerMap;
+//
+//        private Map<String, Integer> getPlayers() {
+//        HashMap<String, Integer> fakePlayers = new HashMap<>();
+//        fakePlayers.put("Alice", 1);
+//        fakePlayers.put("Bob", 2);
+//        fakePlayers.put("Jon", 3);
+//        return fakePlayers;
+//        }
 
 public class mainMenu extends Activity {
 
@@ -84,9 +92,12 @@ public class mainMenu extends Activity {
     }
 
     public void playButtonClicked(View view){
+        finish();
         Intent intent = new Intent(this, Game.class);
+        intent.setClassName("com.timothypuglia.scumbagpug","com.timothypuglia.scumbagpug.Game");
         startActivity(intent);
     }
+
 
 
 
@@ -96,21 +107,4 @@ public class mainMenu extends Activity {
        intent2.putExtra("playerName",player1NameATV.getText().toString());
         startActivity(intent2);
     }
-
-
-//    {
-//        timer.cancel();
-//        timer=null;
-//
-//        Intent intent new Intent(getApplicationContext(),result.class);
-//        intent.putExtra("SCORE",score);
-//        startActivity(intent);
-//
-//
-//
-//
-//    }
-
-
-
-}
+    }
