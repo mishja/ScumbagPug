@@ -19,17 +19,13 @@ import org.w3c.dom.Text;
 
 public class gameoverscreen extends Activity {
 
-    TextView tv_score;
-   private int score = 0;
-  //  int lastScore;
-
-    int best1, best2, best3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
         //set to full screen
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -43,70 +39,26 @@ public class gameoverscreen extends Activity {
         //SET CONTEXT
         setContentView(R.layout.activity_gameoverscreen);
 
-  //      TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
- //       TextView highScoreLabel =(TextView) findViewById(R.id.highScoreLabel);
+        TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        TextView highScoreLabel =(TextView) findViewById(R.id.highScoreLabel);
 
-
-
-        tv_score = (TextView) findViewById(R.id.tv_score);
-        tv_score.setText("SCORE: " + score);
-
-        SharedPreferences preferences = getSharedPreferences("PREFS",0);
-
-
-
-         score =getIntent().getIntExtra("playerScore",0);
-  //      scoreLabel.setText(score+"");
+        int score =getIntent().getIntExtra("playerScore",0);
+        scoreLabel.setText(score+"");
         System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
-
         int highScore = settings.getInt("HIGH_SCORE",0);
-  //      score = preferences.getInt("lastScore",0);
-        best1 = preferences.getInt("best1",0);
-        best2 = preferences.getInt("best2",0);
-        best3 = preferences.getInt("best3",0);
 
-        if(score > best3) {
-            best3 = score;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("Best3", best3);
-            editor.apply();
-        }
-        if(score > best2) {
-            int temp = best2;
-            best2 = score;
-            best3 = temp;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("Best3", best3);
-            editor.putInt("Best2", best2);
-            editor.apply();
-        }
-        if(score>best1) {
-            int temp = best1;
-            best1 = score;
-            best2 = temp;
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("Best3", best3);
-            editor.putInt("Best2", best2);
-            editor.apply();
-
-
-  //          highScoreLabel.setText("High Score: "+score);
+        if(score>highScore){
+            highScoreLabel.setText("High Score: "+score);
 
             //save that stuff
-   //   SharedPreferences.Editor editor = settings.edit();
+            SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE",score);
             editor.commit();
 
+        }else{
+            highScoreLabel.setText("High Score "+highScore);
         }
-
-        
-      tv_score.setText("LAST SCORE: " + score +"\n" +
-                "best1: " + best1 + "\n" +
-                "best2: " + best2 + "\n" +
-                "best3: " + best3 +"\n"+
-      "geld" + "\n" +
-      "superdoei");
 
     }
 

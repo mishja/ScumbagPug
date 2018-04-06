@@ -5,21 +5,21 @@ import android.graphics.Canvas;
 
 import java.util.Random;
 
-public class Houses extends GameObject{
+public class HousesDouble extends GameObject{
     private int score;
     private int speed;
     private Random rand = new Random();
     private Animation animation = new Animation();
     private Bitmap spritesheet;
 
-    public Houses(Bitmap res, int x, int y, int w, int h, int s, int numFrames){
+    public HousesDouble(Bitmap res, int x, int y, int w, int h, int s, int numFrames){
         super.x = x;
         super.y = y;
         width=w;
         height=h;
         score = s;
 
-       // speed = 10+(int) (rand.nextDouble()*score/30);
+        // speed = 10+(int) (rand.nextDouble()*score/30);
         speed = 10;
         if(speed>40) speed = 40;
 

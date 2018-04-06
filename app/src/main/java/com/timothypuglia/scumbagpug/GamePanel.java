@@ -30,12 +30,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
     public static final int MOVESPEED = -5;
+    public static MainThread thread;
+    public static Player player;
     private long housesStartTime;
     private long housesElapsed;
-    public MainThread thread;
     private Background bg;
-    private Player player;
     private ArrayList<Houses> houses;
+    private ArrayList<HousesDouble> housesDouble;
     private Random rand = new Random();
     private Context mContext;
     private View pauseButton;
@@ -110,6 +111,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
        // pauseButton = new pauseButton(BitmapFactory.decodeResource(getResources(), R.drawable.pauze),240,240);
         //we can safely start the game loop
         houses = new ArrayList<Houses>();
+        housesDouble = new ArrayList<HousesDouble>();
         housesStartTime = System.nanoTime();
         thread.setRunning(true);
         thread.start();
@@ -118,6 +120,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
+        thread.setPaused(false);
         if (event.getAction()==MotionEvent.ACTION_DOWN){
             System.out.println("Im being pressed");
             if (!player.getPlaying()){
@@ -135,49 +138,27 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         return super.onTouchEvent(event);
     }
 
-    public void update(){
-        int previousY = player.getY();
-        if (player.getPlaying()) {
-            bg.update();
-            player.update();
-//            Add houses on timer
-            long housesElapsed = (System.nanoTime()-housesStartTime)/1000000;
+    public void checkCollisionSmall(){
+//          Loop through every house (single height) for collision
+        for (int i=0; i<houses.size();i++){
+            houses.get(i).update();
+            System.out.println("hoogte speler:  "+ player.getY());
+            System.out.println("hoogte huisje:  " +(ground-120));
+            if (collision(houses.get(i),player)){
+                if (player.getY()>ground-120){
+                    System.out.println("You got hit");
 
-            if (housesElapsed>3000){
-//                //first house down the middle
-                System.out.println("Daar komt een huisje!");
+                    houses.remove(i);
+                    player.setPlaying(false);
+                    Intent intent = new Intent(mContext,gameoverscreen.class);
 
-                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,135, player.getScore(),1));
-//                } else{
-//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.dubbelhuisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,270,player.getScore(),1));
-
-//                else {
-//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
-//                }
-                housesStartTime = System.nanoTime();
-            }
-//            Loop through every house for collision
-      //      if (collision(houses,player))
-
-            for (int i=0; i<houses.size();i++){
-                houses.get(i).update();
-                System.out.println("hoogte speler:  "+ player.getY());
-                System.out.println("hoogte huisje:  " +(ground-120));
-                if (collision(houses.get(i),player)){
-                    if (player.getY()>ground-120){
-                        System.out.println("You got hit");
-
-                        houses.remove(i);
-                        player.setPlaying(false);
-                        Intent intent = new Intent(mContext,gameoverscreen.class);
-
-                        intent.putExtra("playerScore",player.getScore());
-                        mContext.startActivity(intent);
-                        break;
-                    }else if (player.getY()<=ground-120){
-                        System.out.println("You are on a building");
-                        player.setGround(player.getY());
-                    }
+                    intent.putExtra("playerScore",player.getScore());
+                    mContext.startActivity(intent);
+                    break;
+                }else if (player.getY()<=ground-120){
+                    System.out.println("You are on a building");
+                    player.setGround(player.getY());
+                }
 
 
 //                    AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
@@ -191,24 +172,90 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 //                            });
 //                    alertDialog.show();
 
-                } else{
-                    player.setGround(GamePanel.HEIGHT /4*3-player.getHeight());
-                    if (player.getY()<player.ground){
-                        player.setFalling(true);}
+            } else{
+                player.setGround(GamePanel.HEIGHT /4*3-player.getHeight());
+                if (player.getY()<player.ground){
+                    player.setFalling(true);}
 
-                }
+            }
 //                Remove house when far off the screen
-                if(houses.get(i).getX()<-240){
-                    houses.remove(i);
+            if(houses.get(i).getX()<-240){
+                houses.remove(i);
 
-                    break;
-                }
+                break;
             }
         }
+    }
 
+    public void checkCollisionBig(){
+        //          Loop through every house (Double height) for collision
+        for (int j=0; j<housesDouble.size();j++){
+            housesDouble.get(j).update();
+            System.out.println("hoogte speler:  "+ player.getY());
+            System.out.println("hoogte huisje:  " +(ground-240));
+            if (collision(housesDouble.get(j),player)){
+                if (player.getY()>ground-240){
+                    System.out.println("You got hit");
+
+                    housesDouble.remove(j);
+                    player.setPlaying(false);
+                    Intent intent = new Intent(mContext,gameoverscreen.class);
+
+                    intent.putExtra("playerScore",player.getScore());
+                    mContext.startActivity(intent);
+                    break;
+                }else if (player.getY()<=ground-240){
+                    System.out.println("You are on a building");
+                    player.setGround(player.getY());
+                }
+
+            } else{
+                player.setGround(GamePanel.HEIGHT /4*3-player.getHeight());
+                if (player.getY()<player.ground){
+                    player.setFalling(true);}
+
+            }
+//                Remove house when far off the screen
+            if(housesDouble.get(j).getX()<-240){
+                housesDouble.remove(j);
+
+                break;
+            }
+        }
+    }
+
+    public void update(){
+        if (player.getPlaying()) {
+            bg.update();
+            player.update();
+//            Add houses on timer
+            long housesElapsed = (System.nanoTime() - housesStartTime) / 1000000;
+
+            if (housesElapsed > 3000 && houses.size()==0) {
+//                //first house down the middle
+                System.out.println("Daar komt een huisje!");
+
+                houses.add(new Houses(BitmapFactory.decodeResource(getResources(), R.drawable.huisje), WIDTH + 10, HEIGHT - ((HEIGHT / 8) + 265), 240, 135, player.getScore(), 1));
+//                } else{
+//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.dubbelhuisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,270,player.getScore(),1));
+
+//                else {
+//                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
+//                }
+                housesDouble.add(new HousesDouble(BitmapFactory.decodeResource(getResources(), R.drawable.dubbelhuisje), WIDTH + 350, HEIGHT - ((HEIGHT / 8) + 400), 240, 270, player.getScore(), 1));
+
+                housesStartTime = System.nanoTime();
+            }
+
+            checkCollisionSmall();
+  //          checkCollisionBig();
+        }
     }
 
 
+    public void pauseButtonClicked(View view){
+        thread.setPaused(true);
+    }
 
     public boolean collision(GameObject a, GameObject b){
         if (Rect.intersects(a.getRectangle(),b.getRectangle())){
@@ -231,6 +278,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
 
 
             for (Houses h: houses){
+                h.draw(canvas);
+            }
+            for (HousesDouble h: housesDouble){
                 h.draw(canvas);
             }
 
