@@ -100,6 +100,7 @@ public class gameoverscreen extends Activity {
 
         }
 
+        
       tv_score.setText("LAST SCORE: " + score +"\n" +
                 "best1: " + best1 + "\n" +
                 "best2: " + best2 + "\n" +
