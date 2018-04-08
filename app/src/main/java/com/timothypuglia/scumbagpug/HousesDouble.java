@@ -44,6 +44,7 @@ public class HousesDouble extends GameObject{
             canvas.drawBitmap(animation.getImage(),x,y,null);
         } catch (Exception e){}
     }
+
 //    @Override
 //    public int getWidth(){
 ////        Offset slightly for more realistic collision detection

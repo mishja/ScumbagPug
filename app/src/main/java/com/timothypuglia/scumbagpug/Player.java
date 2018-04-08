@@ -31,7 +31,7 @@ public class Player extends GameObject{
 
         width = w;
         gravity = 0.70;
-        jumpStart =-13.0;
+        jumpStart =-16.0;
         maxFallingSpeed = 12;
 
         //GROUND HAS TO BE CHANGED TO THE HEIGHT OF THE BUILDINGS

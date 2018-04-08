@@ -28,24 +28,24 @@
 
             <Button
                 android:id="@+id/mainMenu"
-                android:visibility="invisible"
 
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginVertical="300dp"
-                android:layout_marginLeft="100dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/buttonshape"
+                android:gravity="center"
 
-                android:onClick="mainMenuButton"
+                android:onClick="menuButtonClicked"
                 android:shadowColor="#828F86"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
                 android:text="Main Menu"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+
+                />
 
 
         </LinearLayout>
