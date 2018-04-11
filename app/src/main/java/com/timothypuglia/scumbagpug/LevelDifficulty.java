@@ -4,29 +4,19 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsMessage;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
-//private Map<String, Integer> playerMap;
-//
-//        private Map<String, Integer> getPlayers() {
-//        HashMap<String, Integer> fakePlayers = new HashMap<>();
-//        fakePlayers.put("Alice", 1);
-//        fakePlayers.put("Bob", 2);
-//        fakePlayers.put("Jon", 3);
-//        return fakePlayers;
-//        }
+/**
+ * Created by Mischa de Haan on 9-4-2018.
+ */
 
-public class mainMenu extends Activity {
+public class LevelDifficulty extends Activity {
 
-    public AutoCompleteTextView player1NameATV;
 
 
     @Override
@@ -34,7 +24,6 @@ public class mainMenu extends Activity {
         super.onCreate(savedInstanceState);
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 
         //set to full screen
         View decorView = getWindow().getDecorView();
@@ -46,8 +35,9 @@ public class mainMenu extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+
         //SET CONTEXT
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_difficulty);
 
         // these are the trees
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
@@ -88,22 +78,24 @@ public class mainMenu extends Activity {
             }
         });
         animator2.start();
-
     }
 
-    public void playButtonClicked(View view){
-        finish();
-        Intent intent = new Intent(this, LevelDifficulty.class);
+    public void easyButtonClicked(View view){
+    Intent intent = new Intent(this,Game.class);
+    intent.putExtra("levelDifficulty",0);
+    startActivity(intent);
+    }
+
+    public void mediumButtonClicked(View view){
+        Intent intent = new Intent(this,Game.class);
+        intent.putExtra("levelDifficulty",1);
         startActivity(intent);
     }
 
-
-
-
-    public void scoreButtonClicked(View view){
-        player1NameATV = findViewById(R.id.player1NameATV);
-        Intent intent2 = new Intent(this, ScoreBoard.class);
-       intent2.putExtra("playerName",player1NameATV.getText().toString());
-        startActivity(intent2);
+    public void hardButtonClicked(View view){
+        Intent intent = new Intent(this,Game.class);
+        intent.putExtra("levelDifficulty",2);
+        startActivity(intent);
     }
+
     }

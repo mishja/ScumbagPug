@@ -23,12 +23,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LevelDifficulty"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".Game"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ScoreBoard"
             android:screenOrientation="landscape" />
-        <activity android:name=".gameoverscreen"
+        <activity
+            android:name=".gameoverscreen"
             android:screenOrientation="landscape"/>
     </application>
 

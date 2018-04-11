@@ -40,30 +40,42 @@ public class gameoverscreen extends Activity {
         setContentView(R.layout.activity_gameoverscreen);
 
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
-        TextView highScoreLabel =(TextView) findViewById(R.id.highScoreLabel);
+        TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
 
-        int score = getIntent().getIntExtra("playerScore",0);
-        scoreLabel.setText(score+"");
+        int score = getIntent().getIntExtra("playerScore", 0);
+        scoreLabel.setText(score + "");
         System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
-        int highScore = settings.getInt("HIGH_SCORE",0);
+        int highScore = settings.getInt("HIGH_SCORE", 0);
 
-        if(score>highScore){
-            highScoreLabel.setText("High Score: "+score);
+        if (score > highScore) {
+            highScoreLabel.setText("High Score: " + score);
 
             //save that stuff
             SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE",score);
+            editor.putInt("HIGH_SCORE", score);
             editor.commit();
 
-        }else{
-            highScoreLabel.setText("High Score "+highScore);
+        } else {
+            highScoreLabel.setText("High Score " + highScore);
         }
 
     }
 
-    public void tryAgain(View view){
-        startActivity(new Intent(getApplicationContext(),Game.class));
-    }
+    public void tryAgain(View view) {
+        Intent intent = new Intent(this, Game.class);
+        switch (Game.levelDifficulty) {
+            case 1:
+                intent.putExtra("levelDifficultyTryAgain", 1);
+                break;
+            case 0:
+                intent.putExtra("levelDifficultyTryAgain", 0);
+                break;
+            case 2:
+                intent.putExtra("levelDifficultyTryAgain", 2);
+                break;
+        }
 
+        startActivity(intent);
+    }
 }

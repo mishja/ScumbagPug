@@ -44,11 +44,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private View pauseButton;
     private boolean collisionSmallCheck;
     private boolean collisionBigCheck;
-    private Integer[] houselist ={0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,2,2,2};
+    private Integer[] houselist;
+    private Integer[] houselistHard = {2,2,2,2,2,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
 
+    private Integer[] houselistEasy ={0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private Integer[] houselistMedium ={1,1,1,1,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private int levelDifficulty;
     private int ground;
     private int l=0;
-
 
 
     public GamePanel(Context context, AttributeSet attributeSet){
@@ -68,24 +71,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     public GamePanel(Context context){
         this(context,null);
     }
-
-//    public GamePanel(Context context, AttributeSet attributeSet){
-//        this(context); // roep de constructor die geen AttributeSet ontvangt aan
-//    }
-//
-//    public GamePanel(Context context){
-//
-//        super(context);
-//        this.mContext = getContext();
-//
-//        //add the callback to the surfaceholder to intercept events
-//        getHolder().addCallback(this);
-//
-//        thread = new MainThread(getHolder(), this);
-//
-//        //make gamePanel focusable so i tcan handle events
-//        setFocusable(true);
-//    }
 
 
     @Override
@@ -125,6 +110,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         ground = GamePanel.HEIGHT /4*3-player.getHeight();
         collisionSmallCheck = false;
         collisionBigCheck = false;
+
+        levelDifficulty=Game.levelDifficulty;
+        //set difficulty
+        switch (levelDifficulty){
+            case 1: houselist = houselistMedium;
+                    break;
+            case 0: houselist = houselistEasy;
+                    break;
+            case 2: houselist = houselistHard;
+                    break;
+        }
+        System.out.println("Leveldifficulty: "+Game.levelDifficulty);
+        System.out.println("houselist: "+ houselist);
     }
 
     @Override
@@ -227,13 +225,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             player.update();
 //            Add houses on timer
             long housesElapsed = (System.nanoTime() - housesStartTime) / 1000000;
+            // Check if previous house has entered completely
                 if (housesElapsed>390){
-
-
                     switch (houselist[l]){
-                        case 0:
-                                housesStartTime = System.nanoTime();
-
+                        case 0: housesStartTime = System.nanoTime();
                                 break;
                         case 1: houses.add(new Houses(BitmapFactory.decodeResource(getResources(), R.drawable.huisje), WIDTH + 10, HEIGHT - ((HEIGHT / 8) + 265), 240, 135, player.getScore(), 1));
                                 housesStartTime = System.nanoTime();
@@ -248,22 +243,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     }
                 }
 
-//            if (housesElapsed > 2000) {
-////                //first house down the middle
-//                System.out.println("Daar komt een huisje!");
-//
-//                houses.add(new Houses(BitmapFactory.decodeResource(getResources(), R.drawable.huisje), WIDTH + 10, HEIGHT - ((HEIGHT / 8) + 265), 240, 135, player.getScore(), 1));
-////                } else{
-////                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.dubbelhuisje),WIDTH+10,HEIGHT-((HEIGHT/8)+265),240,270,player.getScore(),1));
-//
-////                else {
-////                    houses.add(new Houses(BitmapFactory.decodeResource(getResources(),R.drawable.huisje),WIDTH+10,(int)((rand.nextDouble()*HEIGHT)),240,135, player.getScore(),1));
-////                }
-//                housesDouble.add(new HousesDouble(BitmapFactory.decodeResource(getResources(), R.drawable.dubbelhuisje), WIDTH + 300, HEIGHT - ((HEIGHT / 8) + 400), 240, 270, player.getScore(), 1));
-//
-//                housesStartTime = System.nanoTime();
-//            }
-
             checkCollisionSmall();
             checkCollisionBig();
 
@@ -274,8 +253,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             }
         }
     }
-
-
 
     public boolean collision(GameObject a, GameObject b){
         if (Rect.intersects(a.getRectangle(),b.getRectangle())){
@@ -296,18 +273,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             bg.draw(canvas);
             player.draw(canvas);
 
-
             for (Houses h: houses){
                 h.draw(canvas);
             }
             for (HousesDouble h: housesDouble){
                 h.draw(canvas);
             }
-
-
             canvas.restoreToCount(savedState);
         }
     }
-
 }
 

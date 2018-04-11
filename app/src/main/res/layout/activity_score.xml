@@ -32,6 +32,66 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/ranking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nr."/>
+
+                <TextView
+                    android:id="@+id/rankingName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player" />
+
+
+                <TextView
+                    android:id="@+id/rankingScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score"/>
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/ranking1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nr."/>
+
+                <TextView
+                    android:id="@+id/rankingName1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player" />
+
+
+                <TextView
+                    android:id="@+id/rankingScore1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score"/>
+
+
+            </TableRow>
+
+
+
+
+
+
+
+
+        </TableLayout>
         <Button
             android:id="@+id/button"
 

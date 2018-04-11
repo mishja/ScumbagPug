@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.timothypuglia.scumbagpug.Game">
 
-    <FrameLayout
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="16dp">
+
 
         <ImageView
             android:id="@+id/background_three"
@@ -42,75 +43,69 @@
             android:layout_height="match_parent"
             android:src="@drawable/clouds" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="62dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/buttonshape"
-                android:text="Game Over"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/scoreLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/buttonshape"
-                android:textSize="30sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/highScoreLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/buttonshape"
-                android:text="high score 300"
-
-                android:textSize="30sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="tvscoretexthier"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/hardButton"
+                android:id="@+id/easyButton"
+
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="2dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/buttonshape"
-                android:onClick="tryAgain"
+
+                android:onClick="easyButtonClicked"
                 android:shadowColor="#828F86"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
-                android:text="Try Again"
+                android:text="Easy"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/mediumButton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/buttonshape"
+
+                android:onClick="mediumButtonClicked"
+                android:shadowColor="#828F86"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="Medium"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp" />
 
 
+            <Button
+                android:id="@+id/hardButton"
+
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonshape"
+
+                android:onClick="hardButtonClicked"
+                android:shadowColor="#828F86"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="Hard"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
         </LinearLayout>
+
+
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
