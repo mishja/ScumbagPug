@@ -127,8 +127,7 @@ public class gameoverscreen extends Activity {
             highscore = settings.getInt("High_score",0);
             highscore2 = settings.getInt("High_score2", 0);
             highscore3 = settings.getInt("High_score3", 0);
-
-
+            
 
             highScoreLabel.setText("Highscore 1 >: " + highscore);
             highScoreLabel2.setText("Highscore 2 >: " + highscore2);
