@@ -19,13 +19,19 @@ import org.w3c.dom.Text;
 
 public class gameoverscreen extends Activity {
 
+    TextView tv_score;
+    private int score = 0;
+    int highscore = 0;
+    int highscore2 = 0;
+    //  int lastScore;
+
+    int best1, best2, best3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
         //set to full screen
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -41,41 +47,81 @@ public class gameoverscreen extends Activity {
 
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
+        TextView highScoreLabel2 = (TextView) findViewById(R.id.highScoreLabel2);
+        TextView highScoreLabel3 = (TextView) findViewById(R.id.highScoreLabel3);
 
         int score = getIntent().getIntExtra("playerScore", 0);
         scoreLabel.setText(score + "");
         System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
-        int highScore = settings.getInt("HIGH_SCORE", 0);
+        int highscore = settings.getInt("High_score",0);
+        int highscore2 = settings.getInt("High_score2", 0);
+        int highscore3 = settings.getInt("High_score3", 0);
+//        int highscore = 0;
+//        int highscore2 = 0;
+//        int highscore3 = 0;
 
-        if (score > highScore) {
-            highScoreLabel.setText("High Score: " + score);
+
+        if (score > highscore) {
+            int temp = highscore;
+            highscore = score;
+            highscore2 = temp;
+            int temp2 = settings.getInt("High_score2", 0);
+            highscore3=temp2;
+            highScoreLabel.setText("Highscore 1: >score " + score);
+            highScoreLabel2.setText("Highscore 2: " + highscore2);
+            highScoreLabel3.setText("Highscore 3: " + highscore3);
+            scoreLabel.setText("last score " + score);
 
             //save that stuff
             SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE", score);
+            editor.putInt("High_score", score);
+            editor.putInt("High_score2",temp);
+            editor.putInt("High_score3",temp2);
             editor.commit();
+                }
+        else if (score > highscore2) {
+            int temp = highscore2;
+            highscore2 = score;
+            highscore3 = temp;
+            highScoreLabel.setText("Highscore 1: " + highscore);
+            highScoreLabel2.setText("Highscore 2: >score " + score);
+            highScoreLabel3.setText("Highscore 3: " + highscore3);
+            scoreLabel.setText("last score " + score);
 
-        } else {
-            highScoreLabel.setText("High Score " + highScore);
+            //save that stuff
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("High_score2 ",score);
+            editor.putInt("High_score3 ",highscore3);
+            editor.commit();
         }
+        else if (score > highscore3) {
+         //   int temp = highscore3;
+            highscore3 = score;
+            highScoreLabel.setText("Highscore 1: " + highscore);
+            highScoreLabel2.setText("Highscore 2: " + highscore2);
+            highScoreLabel3.setText("Highscore 3: >score " + score);
+            scoreLabel.setText("last score " + score);
+
+            //save that stuff
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("High_score3",score);
+            editor.commit();
+        }
+        else { //deze gaat nog mis
+            highscore = settings.getInt("High_score",0);
+            highscore2 = settings.getInt("High_score2", 0);
+            highscore3 = settings.getInt("High_score3", 0);
+
+            highScoreLabel.setText("Highscore 1: " + highscore);
+            highScoreLabel2.setText("Highscore 2: " + highscore2);
+            highScoreLabel3.setText("Highscore 3: " + highscore3);
+        }
+
 
     }
 
     public void tryAgain(View view) {
-        Intent intent = new Intent(this, Game.class);
-        switch (Game.levelDifficulty) {
-            case 1:
-                intent.putExtra("levelDifficultyTryAgain", 1);
-                break;
-            case 0:
-                intent.putExtra("levelDifficultyTryAgain", 0);
-                break;
-            case 2:
-                intent.putExtra("levelDifficultyTryAgain", 2);
-                break;
-        }
-
-        startActivity(intent);
+        startActivity(new Intent(getApplicationContext(), Game.class));
     }
 }
