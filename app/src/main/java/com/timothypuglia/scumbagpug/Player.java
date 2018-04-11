@@ -86,6 +86,7 @@ public class Player extends GameObject{
         {
             score++;
             startTime = System.nanoTime();
+
         }
         animation.update();
 
@@ -139,7 +140,7 @@ public class Player extends GameObject{
     {
         canvas.drawBitmap(animation.getImage(),x,y,null);
     }
-    public int getScore(){return score;}
+    public int getScore(){return score;} //wordt door GamePanel opgehaald
     public boolean getPlaying(){return playing;}
     public void setPlaying(boolean b){playing = b;}
     public void resetDY(){dy = 0;}

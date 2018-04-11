@@ -52,6 +52,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     private int levelDifficulty;
     private int ground;
     private int l=0;
+    public  static int playerScore;
 
 
     public GamePanel(Context context, AttributeSet attributeSet){
@@ -162,7 +163,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                         player.setPlaying(false);
                         Intent intent = new Intent(mContext, gameoverscreen.class);
 
-                        intent.putExtra("playerScore", player.getScore());
+                        intent.putExtra("playerScore", playerScore);
                         mContext.startActivity(intent);
                         break;
                     } else if (player.getY() <= ground - 114) {
@@ -198,7 +199,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                         player.setPlaying(false);
                         Intent intent = new Intent(mContext, gameoverscreen.class);
 
-                        intent.putExtra("playerScore", player.getScore());
+                        intent.putExtra("playerScore", playerScore);
                         mContext.startActivity(intent);
                         break;
                     } else if ((player.getY()+player.getHeight()) <= housesDouble.get(j).getY()+18) {
@@ -243,6 +244,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     }
                 }
 
+            switch (Game.levelDifficulty){
+                case 0: playerScore = player.getScore()*2;
+                    break;
+                case 1: playerScore = player.getScore()*3;
+                    break;
+                case 2: playerScore = player.getScore()*4;
+                    break;
+            }
             checkCollisionSmall();
             checkCollisionBig();
 

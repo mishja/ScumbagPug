@@ -50,16 +50,25 @@ public class gameoverscreen extends Activity {
         TextView highScoreLabel2 = (TextView) findViewById(R.id.highScoreLabel2);
         TextView highScoreLabel3 = (TextView) findViewById(R.id.highScoreLabel3);
 
-        int score = getIntent().getIntExtra("playerScore", 0);
+        int score = getIntent().getIntExtra("playerScore", 0); //playerScore komt uit Player
         scoreLabel.setText(score + "");
         System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
+
+//        SharedPreferences.Editor editor = settings.edit();
+//        editor.putInt("High_score ",0);
+//        editor.putInt("High_score2 ",0);
+//        editor.putInt("High_score3 ",0);
+//        editor.commit();
+
         int highscore = settings.getInt("High_score",0);
         int highscore2 = settings.getInt("High_score2", 0);
         int highscore3 = settings.getInt("High_score3", 0);
-//        int highscore = 0;
-//        int highscore2 = 0;
-//        int highscore3 = 0;
+
+//        SharedPreferences.Editor editor = settings.edit();
+//        SharedPreferences.Editor.clear();
+//        editor.commit();
+
 
 
         if (score > highscore) {
@@ -109,13 +118,21 @@ public class gameoverscreen extends Activity {
             editor.commit();
         }
         else { //deze gaat nog mis
+            SharedPreferences.Editor editor = settings.edit();
+            int hallo =0;
+            editor.putInt("High_score ",hallo);
+            editor.putInt("High_score2 ",hallo);
+            editor.putInt("High_score3 ",hallo);
+            editor.commit();
             highscore = settings.getInt("High_score",0);
             highscore2 = settings.getInt("High_score2", 0);
             highscore3 = settings.getInt("High_score3", 0);
 
-            highScoreLabel.setText("Highscore 1: " + highscore);
-            highScoreLabel2.setText("Highscore 2: " + highscore2);
-            highScoreLabel3.setText("Highscore 3: " + highscore3);
+
+
+            highScoreLabel.setText("Highscore 1 >: " + highscore);
+            highScoreLabel2.setText("Highscore 2 >: " + highscore2);
+            highScoreLabel3.setText("Highscore 3 >: " + highscore3);
         }
 
 
