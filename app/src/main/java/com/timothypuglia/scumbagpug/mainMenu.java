@@ -28,7 +28,6 @@ public class mainMenu extends Activity {
 
     public AutoCompleteTextView player1NameATV;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -114,6 +114,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
     }
     @Override
     public void surfaceCreated(SurfaceHolder holder){
+
+
         //Game
      //   Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf");
         game = new Game();
@@ -160,6 +162,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
         thread.start();
     }
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         Game.mainMenuButton.setVisibility(View.GONE);
@@ -167,6 +170,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
         thread.setPaused(false);
         if (event.getAction()==MotionEvent.ACTION_DOWN){
             System.out.println("Im being pressed");
+            Game.playButton.setVisibility(View.INVISIBLE);
+   //        Game.pausebutton.setVisibility(View.VISIBLE);
+
             if (!player.getPlaying()){
                 player.setPlaying(true);
             }

@@ -33,6 +33,8 @@ public class Game extends Activity {
     private Thread thread;
     public static int levelDifficulty = 0;
     public static Button changeDifficultyButton;
+    public static ImageView playButton;
+
     public TextView scoreUpdate;
     public static Paint paint;
     public static Paint paint2;
@@ -61,44 +63,44 @@ public class Game extends Activity {
         setContentView(R.layout.activity_game);
 
         ////////////////// begin background animation ////////////////////////
-        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
-        final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
-        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f); //MISCHA AFBLIJVEN
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.setDuration(8000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE BOMEN. HOGER IS TRAGER
-
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = backgroundOne.getWidth();
-                final float translationX = width * progress;
-                backgroundOne.setTranslationX(translationX);
-                backgroundTwo.setTranslationX(translationX + width);
-            }
-        });
-        animator.start();
+//        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
+//        final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
+//        final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f); //MISCHA AFBLIJVEN
+//        animator.setRepeatCount(ValueAnimator.INFINITE);
+//        animator.setInterpolator(new LinearInterpolator());
+//        animator.setDuration(8000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE BOMEN. HOGER IS TRAGER
+//
+//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                final float progress = (float) animation.getAnimatedValue();
+//                final float width = backgroundOne.getWidth();
+//                final float translationX = width * progress;
+//                backgroundOne.setTranslationX(translationX);
+//                backgroundTwo.setTranslationX(translationX + width);
+//            }
+//        });
+//        animator.start();
 
         // these are the clouds
-        final ImageView backgroundOne2 = (ImageView) findViewById(R.id.background_one2);
-        final ImageView backgroundTwo2 = (ImageView) findViewById(R.id.background_two2);
-        final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -1.0f);//MISCHA AFBLIJVEN
-        animator2.setRepeatCount(ValueAnimator.INFINITE);
-        animator2.setInterpolator(new LinearInterpolator());
-        animator2.setDuration(20000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE WOLKEN. HOGER IS TRAGER
-
-        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = backgroundOne2.getWidth();
-                final float translationX = width * progress;
-                backgroundOne2.setTranslationX(translationX);
-                backgroundTwo2.setTranslationX(translationX + width);
-            }
-        });
-        animator2.start();
+//        final ImageView backgroundOne2 = (ImageView) findViewById(R.id.background_one2);
+//        final ImageView backgroundTwo2 = (ImageView) findViewById(R.id.background_two2);
+//        final ValueAnimator animator2 = ValueAnimator.ofFloat(0.0f, -1.0f);//MISCHA AFBLIJVEN
+//        animator2.setRepeatCount(ValueAnimator.INFINITE);
+//        animator2.setInterpolator(new LinearInterpolator());
+//        animator2.setDuration(20000L); //DIT GETAL BEPAALT DE SNELHEID VAN DE WOLKEN. HOGER IS TRAGER
+//
+//        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                final float progress = (float) animation.getAnimatedValue();
+//                final float width = backgroundOne2.getWidth();
+//                final float translationX = width * progress;
+//                backgroundOne2.setTranslationX(translationX);
+//                backgroundTwo2.setTranslationX(translationX + width);
+//            }
+//        });
+//        animator2.start();
 
         ////////////////////// end background animation //////////////////////
         paint = new Paint();
@@ -119,9 +121,11 @@ public class Game extends Activity {
         if (levelDifficulty == 3) {
             levelDifficulty = getIntent().getIntExtra("levelDifficultyTryAgain", 0);
         }
-        mainMenuButton = (Button) findViewById(R.id.mainMenu);
-        changeDifficultyButton = (Button) findViewById(R.id.changeDifficulty);
-        pausebutton = (ImageButton) findViewById(R.id.pausebutton);
+        mainMenuButton = (Button)findViewById(R.id.mainMenu);
+        changeDifficultyButton = (Button)findViewById(R.id.changeDifficulty);
+        playButton = (ImageView)findViewById(R.id.playbutton);
+        pausebutton = (ImageButton)findViewById(R.id.pausebutton);
+
 
         mainMenuButton.setVisibility(View.GONE);
         changeDifficultyButton.setVisibility(View.GONE);
@@ -155,10 +159,8 @@ public class Game extends Activity {
     public int getLevelDifficulty() {
         System.out.println("your function returns: "+levelDifficulty);
         return levelDifficulty;
-
     }
     public int getHighscore(){
         return Highscore;
     }
 }
-

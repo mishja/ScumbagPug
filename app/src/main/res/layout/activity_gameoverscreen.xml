@@ -10,34 +10,34 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/background_three"
+            android:id="@+id/nohousenocolour2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/background" />
+            android:src="@drawable/nohousenocolour2" />
 
-        <ImageView
-            android:id="@+id/background_one"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/backgroundsmall" />
+        <!--<ImageView-->
+            <!--android:id="@+id/background_one"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/backgroundsmall" />-->
 
-        <ImageView
-            android:id="@+id/background_two"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/backgroundsmall" />
+        <!--<ImageView-->
+            <!--android:id="@+id/background_two"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/backgroundsmall" />-->
 
-        <ImageView
-            android:id="@+id/background_one2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/clouds" />
+        <!--<ImageView-->
+            <!--android:id="@+id/background_one2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/clouds" />-->
 
-        <ImageView
-            android:id="@+id/background_two2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/clouds" />
+        <!--<ImageView-->
+            <!--android:id="@+id/background_two2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/clouds" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,62 +51,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="30dp"
             android:text="Game Over"
-            android:textSize="30sp" />
+            android:textSize="60sp"
+            android:textColor="#ffffff" />
+
 
         <TextView
             android:id="@+id/scoreLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:textSize="30sp" />
+            android:layout_gravity="left"
+            android:layout_marginLeft="270dp"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/highScoreLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="8dp"
             android:text="high score 0"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            />
 
         <TextView
             android:id="@+id/highScoreLabel2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="8dp"
             android:text="high score 0"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffffff" />
 
         <TextView
             android:id="@+id/highScoreLabel3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="8dp"
             android:text="high score 0"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffffff" />
 
 
 
-        <Button
+        <ImageButton
+            android:id="@+id/tryagainbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginTop="30dp"
             android:onClick="tryAgain"
+            android:background="@drawable/buttonshape"
             android:text="Try Again" />
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_score"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:text="tvscoretexthier"-->
-            <!--/>-->
 
     </LinearLayout>
 
