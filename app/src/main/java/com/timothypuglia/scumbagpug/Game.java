@@ -3,8 +3,12 @@ package com.timothypuglia.scumbagpug;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.*;
@@ -30,6 +34,9 @@ public class Game extends Activity {
     public static int levelDifficulty = 0;
     public static Button changeDifficultyButton;
     public TextView scoreUpdate;
+    public static Paint paint;
+    public static Paint paint2;
+    public int Highscore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +101,19 @@ public class Game extends Activity {
         animator2.start();
 
         ////////////////////// end background animation //////////////////////
+        paint = new Paint();
+        paint.setTextSize(100);
+        paint.setColor(Color.parseColor("#FFA500"));
+        paint.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf"));
+        paint2 = new Paint();
+        paint2.setTextSize(60);
+        paint2.setColor(Color.parseColor("#FFA500"));
+        paint2.setTypeface((Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf")));
 
-      //  Typeface typeface = Typeface.createFromAsset(getAssets(),)
+        SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        Highscore = settings.getInt("High_score",0);
+
         levelDifficulty = getIntent().getIntExtra("levelDifficulty", 3);
         System.out.println("level difficulty in game java: "+levelDifficulty);
         if (levelDifficulty == 3) {
@@ -138,6 +156,9 @@ public class Game extends Activity {
         System.out.println("your function returns: "+levelDifficulty);
         return levelDifficulty;
 
+    }
+    public int getHighscore(){
+        return Highscore;
     }
 }
 

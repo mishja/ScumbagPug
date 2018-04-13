@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -116,10 +117,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
         //Game
      //   Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf");
         game = new Game();
-        paint = new Paint();
-        paint.setTextSize(120);
-        paint.setColor(Color.RED);
-    //    paint.setTypeface(Typeface.createFromAsset(getAssets(),))
+//        paint = new Paint();
+//        paint.setTextSize(120);
+//        paint.setColor(Color.RED);
+
         // Game Objects
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
         player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.puglooped),142,100, 8);
@@ -350,8 +351,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
             player.draw(canvas);
-            canvas.drawText(""+playerScore,50,100,paint);
-
+            canvas.drawText(""+playerScore,50,130,Game.paint);
+            canvas.drawText("HIGHSCORE: "+HelperSharedPreferences.getSharedPreferencesInt(mContext,"High_score",0),50,220,Game.paint2);
             for (Houses h: houses){
                 h.draw(canvas);
             }
