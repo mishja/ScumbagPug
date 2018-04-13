@@ -7,12 +7,14 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -52,7 +54,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
     private ArrayList<HousesTriple> housesTriple;
     private Random rand = new Random();
     private Context mContext;
-    private View pauseButton;
     private boolean collisionSmallCheck;
     private boolean collisionBigCheck;
     private boolean collisionBiggerCheck;
@@ -60,7 +61,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
     //--------- LEVELS -----------//
     private Integer[] houselist;
     private Integer[] houselistHard = {1,2,2,3,3,2,0,0,0,1,2,2,0,0,0,0,1,1,3,2,1,0,2,2,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
-    private Integer[] houselistEasy ={1,2,3,0,0,0,1,2,0,0,0,0,0,1,2,2,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private Integer[] houselistEasy ={1,2,3,0,0,0,0,1,2,0,0,0,0,0,1,2,2,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
     private Integer[] houselistMedium ={1,2,3,3,1,1,0,1,1,0,0,0,1,2,2,0,0,0,0,0,1,2,2,2,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
     private int levelDifficulty;
     private int ground;
@@ -113,13 +114,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
     @Override
     public void surfaceCreated(SurfaceHolder holder){
         //Game
+     //   Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf");
         game = new Game();
         paint = new Paint();
         paint.setTextSize(120);
         paint.setColor(Color.RED);
+    //    paint.setTypeface(Typeface.createFromAsset(getAssets(),))
         // Game Objects
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
-        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.puglooped),230,162, 8);
+        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.puglooped),142,100, 8);
        // pauseButton = new pauseButton(BitmapFactory.decodeResource(getResources(), R.drawable.pauze),240,240);
 
         // Make lists of houses (for collision check)
@@ -373,5 +376,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
 }
 

@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.*;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.lang.reflect.Type;
 
 
 public class Game extends Activity {
@@ -92,6 +95,7 @@ public class Game extends Activity {
 
         ////////////////////// end background animation //////////////////////
 
+      //  Typeface typeface = Typeface.createFromAsset(getAssets(),)
         levelDifficulty = getIntent().getIntExtra("levelDifficulty", 3);
         System.out.println("level difficulty in game java: "+levelDifficulty);
         if (levelDifficulty == 3) {
