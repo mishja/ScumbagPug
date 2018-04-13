@@ -49,6 +49,7 @@ public class mainMenu extends Activity {
         //SET CONTEXT
         setContentView(R.layout.activity_menu);
 
+        player1NameATV = (AutoCompleteTextView)findViewById(R.id.player1NameATV);
         // these are the trees
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
@@ -106,4 +107,9 @@ public class mainMenu extends Activity {
        intent2.putExtra("playerName",player1NameATV.getText().toString());
         startActivity(intent2);
     }
+
+    public String getPlayerName(){
+        return player1NameATV.getText().toString();
+    }
+
     }
