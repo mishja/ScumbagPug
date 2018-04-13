@@ -67,7 +67,7 @@ public class gameoverscreen extends Activity {
             int temp2 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0);
 
             highscore3 = temp2;
-            highScoreLabel.setText("Highscore 1: >score " + score);
+            highScoreLabel.setText("Highscore 1: " + score);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
             highScoreLabel3.setText("Highscore 3: " + highscore3);
             scoreLabel.setText("last score " + score);
@@ -83,7 +83,7 @@ public class gameoverscreen extends Activity {
             highscore2 = score;
 
             highScoreLabel.setText("Highscore 1: " + highscore);
-            highScoreLabel2.setText("Highscore 2: >score " + score);
+            highScoreLabel2.setText("Highscore 2: " + score);
             highScoreLabel3.setText("Highscore 3: " + highscore3);
             scoreLabel.setText("last score " + score);
 
@@ -97,7 +97,7 @@ public class gameoverscreen extends Activity {
             highscore3 = score;
             highScoreLabel.setText("Highscore 1: " + highscore);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
-            highScoreLabel3.setText("Highscore 3: >score " + score);
+            highScoreLabel3.setText("Highscore 3: " + score);
             scoreLabel.setText("last score " + score);
 
             //save that stuff
@@ -113,9 +113,9 @@ public class gameoverscreen extends Activity {
 //            highscore2 = settings.getInt("High_score2", 0);
 //            highscore3 = settings.getInt("High_score3", 0);
 
-            highScoreLabel.setText("Highscore 1 >: " + highscore);
-            highScoreLabel2.setText("Highscore 2 >: " + highscore2);
-            highScoreLabel3.setText("Highscore 3 >: " + highscore3);
+            highScoreLabel.setText("Highscore 1: " + highscore);
+            highScoreLabel2.setText("Highscore 2: " + highscore2);
+            highScoreLabel3.setText("Highscore 3: " + highscore3);
 
         }
 
