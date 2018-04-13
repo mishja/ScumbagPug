@@ -10,7 +10,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -20,6 +26,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,33 +36,39 @@ import java.util.List;
 import java.util.Random;
 
 
-public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
+public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,SensorEventListener{
 
     public static final int WIDTH = 1920;
     public static final int HEIGHT = 1080;
     public static final int MOVESPEED = -5;
     public static MainThread thread;
-    public static Player player;
+    public  static Player player;
     private long housesStartTime;
     private long housesElapsed;
+    private Game game;
     private Background bg;
     private ArrayList<Houses> houses;
     private ArrayList<HousesDouble> housesDouble;
+    private ArrayList<HousesTriple> housesTriple;
     private Random rand = new Random();
     private Context mContext;
     private View pauseButton;
     private boolean collisionSmallCheck;
     private boolean collisionBigCheck;
-    private Integer[] houselist;
-    private Integer[] houselistHard = {2,2,2,2,2,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private boolean collisionBiggerCheck;
 
-    private Integer[] houselistEasy ={0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
-    private Integer[] houselistMedium ={1,1,1,1,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    //--------- LEVELS -----------//
+    private Integer[] houselist;
+    private Integer[] houselistHard = {1,2,2,3,3,2,0,0,0,1,2,2,0,0,0,0,1,1,3,2,1,0,2,2,0,0,0,1,2,0,0,0,0,0,1,2,1,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private Integer[] houselistEasy ={1,2,3,0,0,0,1,2,0,0,0,0,0,1,2,2,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
+    private Integer[] houselistMedium ={1,2,3,3,1,1,0,1,1,0,0,0,1,2,2,0,0,0,0,0,1,2,2,2,0,0,1,1,1,2,1,0,0,0,0,1,2,2,1,0,0,0,0,1,2,0,0,0,0,0,0,1,2,2,0,2,2,0,2,2,2,2,2,2,2,2,2,1,1,2,0,0,0,0,2,1};
     private int levelDifficulty;
     private int ground;
     private int l=0;
-    public  static int playerScore;
-
+    public  int playerScore;
+    private SensorManager sensorManager;
+    Sensor accelerometer;
+    private Paint paint;
 
     public GamePanel(Context context, AttributeSet attributeSet){
         super(context,attributeSet);
@@ -97,38 +112,54 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
     }
     @Override
     public void surfaceCreated(SurfaceHolder holder){
-
+        //Game
+        game = new Game();
+        paint = new Paint();
+        paint.setTextSize(120);
+        paint.setColor(Color.RED);
+        // Game Objects
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.nohouse));
-        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.playerblock),70,70, 1);
+        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.puglooped),230,162, 8);
        // pauseButton = new pauseButton(BitmapFactory.decodeResource(getResources(), R.drawable.pauze),240,240);
-        //we can safely start the game loop
+
+        // Make lists of houses (for collision check)
         houses = new ArrayList<Houses>();
         housesDouble = new ArrayList<HousesDouble>();
-
+        housesTriple = new ArrayList<HousesTriple>();
         housesStartTime = System.nanoTime();
-        thread.setRunning(true);
-        thread.start();
+
+        //sensor ready
+        sensorManager = (SensorManager)mContext.getSystemService(Context.SENSOR_SERVICE);
+        accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+        //Some variables
         ground = GamePanel.HEIGHT /4*3-player.getHeight();
         collisionSmallCheck = false;
         collisionBigCheck = false;
 
-        levelDifficulty=Game.levelDifficulty;
+        levelDifficulty= Game.levelDifficulty;
+
         //set difficulty
+        System.out.println("Level difficulty: "+levelDifficulty);
         switch (levelDifficulty){
             case 1: houselist = houselistMedium;
-                    break;
+                break;
             case 0: houselist = houselistEasy;
-                    break;
+                break;
             case 2: houselist = houselistHard;
-                    break;
+                break;
         }
-        System.out.println("Leveldifficulty: "+Game.levelDifficulty);
-        System.out.println("houselist: "+ houselist);
+
+        //we can safely start the game loop
+        thread.setRunning(true);
+        thread.start();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
         Game.mainMenuButton.setVisibility(View.GONE);
+        Game.changeDifficultyButton.setVisibility(View.GONE);
         thread.setPaused(false);
         if (event.getAction()==MotionEvent.ACTION_DOWN){
             System.out.println("Im being pressed");
@@ -158,7 +189,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                         System.out.println("You got hit");
                         System.out.println("hoogte speler:  " + (player.getY()));
                         System.out.println("hoogte klein huisje:  " + (ground-114));
-
                         houses.remove(i);
                         player.setPlaying(false);
                         Intent intent = new Intent(mContext, gameoverscreen.class);
@@ -174,11 +204,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     collisionSmallCheck = false;
                 }
             }
-
 //                Remove house when far off the screen
             if(houses.get(i).getX()<-240){
                 houses.remove(i);
-
                 break;
             }
         }
@@ -191,10 +219,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             if (housesDouble.get(j).getX()<player.getX()+player.width) {
                 if (collision(housesDouble.get(j), player)) {
                     collisionBigCheck = true;
-                    if ((player.getY()+player.getHeight()) > housesDouble.get(j).getY()+18) {
+                    if ((player.getY()+player.getHeight()) > housesDouble.get(j).getY()+19) {
                         System.out.println("You got hit");
                         System.out.println("hoogte speler:  " + (player.getY()+player.getHeight()));
-                        System.out.println("hoogte groot huisje:  " + (housesDouble.get(j).getY()+18));
+                        System.out.println("hoogte groot huisje:  " + (housesDouble.get(j).getY()+19));
                         housesDouble.remove(j);
                         player.setPlaying(false);
                         Intent intent = new Intent(mContext, gameoverscreen.class);
@@ -202,7 +230,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                         intent.putExtra("playerScore", playerScore);
                         mContext.startActivity(intent);
                         break;
-                    } else if ((player.getY()+player.getHeight()) <= housesDouble.get(j).getY()+18) {
+                    } else if ((player.getY()+player.getHeight()) <= housesDouble.get(j).getY()+19) {
                         System.out.println("You are on a bigbuilding");
                         player.setGround(player.getY());
                     }
@@ -219,7 +247,41 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             }
         }
     }
+    public void checkCollisionBigger(){
+        //          Loop through every house (Double height) for collision
+        for (int k=0; k<housesTriple.size();k++){
+            housesTriple.get(k).update();
+            if (housesTriple.get(k).getX()<player.getX()+player.width) {
+                if (collision(housesTriple.get(k), player)) {
+                    collisionBiggerCheck = true;
+                    if ((player.getY()+player.getHeight()) > housesTriple.get(k).getY()+23) {
+                        System.out.println("You got hit");
+                        System.out.println("hoogte speler:  " + (player.getY()+player.getHeight()));
+                        System.out.println("hoogte groot huisje:  " + (housesTriple.get(k).getY()+23));
+                        housesTriple.remove(k);
+                        player.setPlaying(false);
+                        Intent intent = new Intent(mContext, gameoverscreen.class);
 
+                        intent.putExtra("playerScore", playerScore);
+                        mContext.startActivity(intent);
+                        break;
+                    } else if ((player.getY()+player.getHeight()) <= housesTriple.get(k).getY()+23) {
+                        System.out.println("You are on a bigbuilding");
+                        player.setGround(player.getY());
+                    }
+
+                } else {
+                    collisionBiggerCheck = false;
+                }
+            }
+//                Remove house when far off the screen
+            if(housesTriple.get(k).getX()<-240){
+                housesTriple.remove(k);
+
+                break;
+            }
+        }
+    }
     public void update(){
         if (player.getPlaying()) {
             bg.update();
@@ -237,6 +299,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                         case 2: housesDouble.add(new HousesDouble(BitmapFactory.decodeResource(getResources(), R.drawable.dubbelhuisje), WIDTH + 10, HEIGHT - ((HEIGHT / 8) + 400), 240, 270, player.getScore(), 1));
                                 housesStartTime = System.nanoTime();
                                 break;
+                        case 3: housesTriple.add(new HousesTriple(BitmapFactory.decodeResource(getResources(), R.drawable.huisjestriple), WIDTH + 10, HEIGHT - ((HEIGHT / 8) + 535), 240, 405, player.getScore(), 1));
+                                housesStartTime = System.nanoTime();
+                                break;
                     }
                     l++;
                     if (l>=houselist.length){
@@ -244,7 +309,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
                     }
                 }
 
-            switch (Game.levelDifficulty){
+            switch (levelDifficulty){
                 case 0: playerScore = player.getScore()*2;
                     break;
                 case 1: playerScore = player.getScore()*3;
@@ -254,8 +319,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             }
             checkCollisionSmall();
             checkCollisionBig();
+            checkCollisionBigger();
 
-            if (!collisionSmallCheck && !collisionBigCheck){
+            if (!collisionSmallCheck && !collisionBigCheck && !collisionBiggerCheck){
                 player.setGround(GamePanel.HEIGHT /4*3-player.getHeight());
                 if (player.getY()<player.ground){
                     player.setFalling(true);}
@@ -281,6 +347,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             canvas.scale(scaleFactorX,scaleFactorY);
             bg.draw(canvas);
             player.draw(canvas);
+            canvas.drawText(""+playerScore,50,100,paint);
 
             for (Houses h: houses){
                 h.draw(canvas);
@@ -288,8 +355,23 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
             for (HousesDouble h: housesDouble){
                 h.draw(canvas);
             }
+            for (HousesTriple h: housesTriple){
+                h.draw(canvas);
+            }
             canvas.restoreToCount(savedState);
         }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.values[2]>10){
+            player.setJumping(true);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }
 

@@ -54,12 +54,9 @@ public class gameoverscreen extends Activity {
         scoreLabel.setText(score + "");
         System.out.println(score);
         SharedPreferences settings = getSharedPreferences("Game_DATA", Context.MODE_PRIVATE);
-        int highscore = settings.getInt("High_score",0);
+        int highscore = settings.getInt("High_score", 0);
         int highscore2 = settings.getInt("High_score2", 0);
         int highscore3 = settings.getInt("High_score3", 0);
-
-
-
 
 
         if (score > highscore) {
@@ -67,7 +64,7 @@ public class gameoverscreen extends Activity {
             highscore = score;
             highscore2 = temp;
             int temp2 = settings.getInt("High_score2", 0);
-            highscore3=temp2;
+            highscore3 = temp2;
             highScoreLabel.setText("Highscore 1: >score " + score);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
             highScoreLabel3.setText("Highscore 3: " + highscore3);
@@ -76,11 +73,10 @@ public class gameoverscreen extends Activity {
             //save that stuff
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("High_score", score);
-            editor.putInt("High_score2",temp);
-            editor.putInt("High_score3",temp2);
+            editor.putInt("High_score2", temp);
+            editor.putInt("High_score3", temp2);
             editor.commit();
-                }
-        else if (score > highscore2) {
+        } else if (score > highscore2) {
             int temp = highscore2;
             highscore2 = score;
             highscore3 = temp;
@@ -91,12 +87,11 @@ public class gameoverscreen extends Activity {
 
             //save that stuff
             SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("High_score2 ",score);
-            editor.putInt("High_score3 ",highscore3);
+            editor.putInt("High_score2 ", score);
+            editor.putInt("High_score3 ", highscore3);
             editor.commit();
-        }
-        else if (score > highscore3) {
-         //   int temp = highscore3;
+        } else if (score > highscore3) {
+            //   int temp = highscore3;
             highscore3 = score;
             highScoreLabel.setText("Highscore 1: " + highscore);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
@@ -105,18 +100,17 @@ public class gameoverscreen extends Activity {
 
             //save that stuff
             SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("High_score3",score);
+            editor.putInt("High_score3", score);
             editor.commit();
-        }
-        else { //deze gaat nog mis
- //           SharedPreferences.Editor editor = settings.edit();
+        } else { //deze gaat nog mis
+            //           SharedPreferences.Editor editor = settings.edit();
 //            SharedPreferences.Editor editor = settings.edit();
 //            editor.putInt("High_score", 0);
 //            editor.putInt("High_score2", 0);
 //            editor.putInt("High_score3", 0);
 //            editor.commit();
 
-            highscore = settings.getInt("High_score",0);
+            highscore = settings.getInt("High_score", 0);
             highscore2 = settings.getInt("High_score2", 0);
             highscore3 = settings.getInt("High_score3", 0);
 
@@ -130,6 +124,8 @@ public class gameoverscreen extends Activity {
     }
 
     public void tryAgain(View view) {
-        startActivity(new Intent(getApplicationContext(), Game.class));
+        Intent intent = new Intent(this, Game.class);
+        intent.putExtra("levelDifficultyTryAgain",Game.levelDifficulty);
+        startActivity(intent);
     }
 }

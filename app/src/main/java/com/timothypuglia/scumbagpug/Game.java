@@ -14,16 +14,19 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
-public class Game extends Activity{
+public class Game extends Activity {
     private Player player;
     public static Button mainMenuButton;
     private ImageButton pausebutton;
     private Thread thread;
-    public static int levelDifficulty=0;
+    public static int levelDifficulty = 0;
     public static Button changeDifficultyButton;
-
+    public TextView scoreUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class Game extends Activity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
 
-                //SET CONTEXT
+        //SET CONTEXT
         setContentView(R.layout.activity_game);
 
         ////////////////// begin background animation ////////////////////////
@@ -89,44 +92,48 @@ public class Game extends Activity{
 
         ////////////////////// end background animation //////////////////////
 
-        levelDifficulty = getIntent().getIntExtra("levelDifficulty",3);
-        if (levelDifficulty==3){
-            levelDifficulty=getIntent().getIntExtra("levelDifficultyTryAgain",0);
+        levelDifficulty = getIntent().getIntExtra("levelDifficulty", 3);
+        System.out.println("level difficulty in game java: "+levelDifficulty);
+        if (levelDifficulty == 3) {
+            levelDifficulty = getIntent().getIntExtra("levelDifficultyTryAgain", 0);
         }
-        mainMenuButton = (Button)findViewById(R.id.mainMenu);
-        changeDifficultyButton = (Button)findViewById(R.id.changeDifficulty);
-        pausebutton = (ImageButton)findViewById(R.id.pausebutton);
+        mainMenuButton = (Button) findViewById(R.id.mainMenu);
+        changeDifficultyButton = (Button) findViewById(R.id.changeDifficulty);
+        pausebutton = (ImageButton) findViewById(R.id.pausebutton);
 
         mainMenuButton.setVisibility(View.GONE);
         changeDifficultyButton.setVisibility(View.GONE);
 
     }
 
-    public void tryAgain(){
-        Intent intent = new Intent(this,gameoverscreen.class);
+    public void tryAgain() {
+        Intent intent = new Intent(this, gameoverscreen.class);
         startActivity(intent);
     }
 
 
-    public void pauseButtonClicked(View view){
+    public void pauseButtonClicked(View view) {
         GamePanel.player.setPlaying(false);
         mainMenuButton.setVisibility(View.VISIBLE);
         changeDifficultyButton.setVisibility(View.VISIBLE);
-     //  GamePanel.thread.setPaused(true);
-   //     mainMenuButton.setVisibility(view.VISIBLE);
+        //  GamePanel.thread.setPaused(true);
+        //     mainMenuButton.setVisibility(view.VISIBLE);
     }
 
-    public void menuButtonClicked(View view){
-        Intent intent = new Intent(this,mainMenu.class);
+    public void menuButtonClicked(View view) {
+        Intent intent = new Intent(this, mainMenu.class);
         startActivity(intent);
     }
 
-    public void difficultyButtonClicked(View view){
-        Intent intent2 = new Intent(this,LevelDifficulty.class);
+    public void difficultyButtonClicked(View view) {
+        Intent intent2 = new Intent(this, LevelDifficulty.class);
         startActivity(intent2);
     }
 
-    public int getLevelDifficulty(){
+    public int getLevelDifficulty() {
+        System.out.println("your function returns: "+levelDifficulty);
         return levelDifficulty;
+
     }
 }
+

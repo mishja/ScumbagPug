@@ -34,7 +34,12 @@
 
         <TableLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            >
 
             <TableRow
                 android:layout_height="match_parent"
@@ -44,21 +49,30 @@
                 <TextView
                     android:id="@+id/ranking"
                     android:layout_width="match_parent"
+                    android:textSize="20sp"
+                    android:padding="10dp"
                     android:layout_height="wrap_content"
-                    android:text="Nr."/>
+                    android:text="Nr."
+                    android:background="@drawable/cell_shape"/>
 
                 <TextView
                     android:id="@+id/rankingName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Player" />
+                    android:text="Player"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:background="@drawable/cell_shape"/>
 
 
                 <TextView
                     android:id="@+id/rankingScore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Score"/>
+                    android:text="Score"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:background="@drawable/cell_shape"/>
 
             </TableRow>
             <TableRow>
@@ -99,7 +113,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
 
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/buttonshape"
 
             android:onClick="scoreButtonClicked"
