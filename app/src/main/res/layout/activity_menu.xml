@@ -60,7 +60,11 @@
                 android:textColor="@android:color/holo_orange_dark"
                 android:textSize="75sp"
                 android:textStyle="bold"
-                android:typeface="monospace" />
+                android:typeface="monospace"
+                android:shadowColor="#FB19"
+                android:shadowDx="20"
+                android:shadowDy="20"
+                android:shadowRadius="5" />
 
             <Button
                 android:id="@+id/button"

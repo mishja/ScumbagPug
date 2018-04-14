@@ -23,7 +23,7 @@ import org.w3c.dom.Text;
 public class ScoreBoard extends Activity {
 
     private String playerName;
-    private TextView textView2;
+    private TextView title;
     private TextView highscore1;
     private TextView highscoreName1;
     private TextView highscore2;
@@ -56,17 +56,17 @@ public class ScoreBoard extends Activity {
         setContentView(R.layout.activity_score);
         playerName = getIntent().getStringExtra("playerName");
 
-        textView2=findViewById(R.id.text_view_id_jeej);
 
         Typeface tf= Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf");
-
+        title=findViewById(R.id.text_view_id_jeej);
+        title.setTypeface(tf);
         rankingNumber=(TextView)findViewById(R.id.ranking);
         rankingName=(TextView)findViewById(R.id.rankingName);
         rankingScore=(TextView)findViewById(R.id.rankingScore);
         highscore2=(TextView)findViewById(R.id.rankingScore2);
         highscore3=(TextView)findViewById(R.id.rankingScore3);
         highscore4=(TextView)findViewById(R.id.rankingScore4);
-        textView2.setText(playerName);
+
         highscore1=(TextView)findViewById(R.id.rankingScore1);
         highscore2=(TextView)findViewById(R.id.rankingScore2);
         highscore3=(TextView)findViewById(R.id.rankingScore3);
@@ -91,7 +91,14 @@ public class ScoreBoard extends Activity {
         rankingName.setTypeface(tf);
         rankingNumber.setTypeface(tf);
         rankingScore.setTypeface(tf);
-        highscoreName1.setTypeface(tf,Typeface.NORMAL);
+        highscoreName1.setTypeface(tf);
+        highscoreName2.setTypeface(tf);
+        highscoreName3.setTypeface(tf);
+        highscoreName4.setTypeface(tf);
+        highscore1.setTypeface(tf);
+        highscore2.setTypeface(tf);
+        highscore3.setTypeface(tf);
+        highscore4.setTypeface(tf);
     }
 
     //Button back to main menu
