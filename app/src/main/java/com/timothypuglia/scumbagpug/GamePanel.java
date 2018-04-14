@@ -205,6 +205,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
                         System.out.println("hoogte klein huisje:  " + (ground-114));
                         houses.remove(i);
                         player.setPlaying(false);
+                        Game.mediaPlayer.stop();
                         Intent intent = new Intent(mContext, gameoverscreen.class);
 
                         intent.putExtra("playerScore", playerScore);
@@ -239,6 +240,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
                         System.out.println("hoogte groot huisje:  " + (housesDouble.get(j).getY()+19));
                         housesDouble.remove(j);
                         player.setPlaying(false);
+                        Game.mediaPlayer.stop();
                         Intent intent = new Intent(mContext, gameoverscreen.class);
 
                         intent.putExtra("playerScore", playerScore);
@@ -274,6 +276,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
                         System.out.println("hoogte groot huisje:  " + (housesTriple.get(k).getY()+23));
                         housesTriple.remove(k);
                         player.setPlaying(false);
+                        Game.mediaPlayer.stop();
                         Intent intent = new Intent(mContext, gameoverscreen.class);
 
                         intent.putExtra("playerScore", playerScore);

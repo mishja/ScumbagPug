@@ -96,6 +96,7 @@ public class ScoreBoard extends Activity {
 
     //Button back to main menu
     public void scoreButtonClicked(View view) {
+        mainMenu.mediaPlayer.pause();
         Intent intent2 = new Intent(this, mainMenu.class);
         startActivity(intent2);
 

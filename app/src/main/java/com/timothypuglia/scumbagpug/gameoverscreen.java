@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.media.MediaPlayer;
 
 import org.w3c.dom.Text;
 
@@ -28,10 +29,14 @@ public class gameoverscreen extends Activity {
     public String playerName;
     //  int lastScore;
 
-    int best1, best2, best3;
+    public MediaPlayer mediaPlayer;
+
+ // MediaPlayer mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -49,6 +54,9 @@ public class gameoverscreen extends Activity {
         setContentView(R.layout.activity_gameoverscreen);
 
         //Text views
+        mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
+        mediaPlayer.start();
+
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         TextView highScoreLabel2 = (TextView) findViewById(R.id.highScoreLabel2);
@@ -132,6 +140,9 @@ public class gameoverscreen extends Activity {
             highscore2 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0);
             highscore3 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score3",0);
 
+//            highscore = settings.getInt("High_score", 0);
+//            highscore2 = settings.getInt("High_score2", 0);
+//            highscore3 = settings.getInt("High_score3", 0);
 
             highScoreLabel.setText("Highscore 1: " + highscore);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
@@ -144,14 +155,21 @@ public class gameoverscreen extends Activity {
     }
 
     public void tryAgain(View view) {
+        mediaPlayer.stop();
         Intent intent = new Intent(this, Game.class);
         intent.putExtra("levelDifficultyTryAgain",Game.levelDifficulty);
+  //     MediaPlayer mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
+
         startActivity(intent);
     }
 
     public void mainMenu(View view) {
+        mediaPlayer.stop();
         Intent intent = new Intent(this, mainMenu.class);
+ //       MediaPlayer mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
+  //      mediaPlayer.stop();
         startActivity(intent);
+
     }
 
 }
