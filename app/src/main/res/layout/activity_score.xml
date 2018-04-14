@@ -35,8 +35,9 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@null"
             android:gravity="center"
+            android:textColor="#FFA500"
             android:layout_margin="20dp"
             android:layout_gravity="center"
             >
@@ -45,59 +46,164 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center">
+                android:gravity="center"
+                
+                >
+
                 <TextView
                     android:id="@+id/ranking"
                     android:layout_width="match_parent"
-                    android:textSize="20sp"
-                    android:padding="10dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
                     android:text="Nr."
-                    android:background="@drawable/cell_shape"/>
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/rankingName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
                     android:text="Player"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:background="@drawable/cell_shape"/>
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:textSize="20sp" />
 
 
                 <TextView
                     android:id="@+id/rankingScore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="10dp"
                     android:text="Score"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:background="@drawable/cell_shape"/>
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:textSize="20sp" />
 
             </TableRow>
             <TableRow>
+
                 <TextView
                     android:id="@+id/ranking1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nr."/>
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500" />
 
                 <TextView
                     android:id="@+id/rankingName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Player" />
+                    android:text="Player"
+                    android:textColor="#FFA500"
+                    android:textAlignment="center" />
 
 
                 <TextView
                     android:id="@+id/rankingScore1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
                     android:text="Score"/>
 
 
             </TableRow>
+            <TableRow>
 
+                <TextView
+                    android:id="@+id/ranking2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textColor="#FFA500"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/rankingName2"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player"
+                    android:textColor="#FFA500"/>
+
+
+                <TextView
+                    android:id="@+id/rankingScore2"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFA500"
+                    android:text="Score"/>
+
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/ranking3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#FFA500"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/rankingName3"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player" />
+
+
+                <TextView
+                    android:id="@+id/rankingScore3"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score"/>
+
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/ranking4"
+                    android:textColor="#FFA500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/rankingName4"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player" />
+
+
+                <TextView
+                    android:id="@+id/rankingScore4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:textAlignment="center"
+                    android:textColor="#FFA500" />
+
+
+            </TableRow>
 
 
 
@@ -124,6 +230,22 @@
             android:text="BACK"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/scoreResetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="resetButtonClicked"
+            android:shadowColor="#828F86"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:text="Reset Score" />
 
 
     </LinearLayout>

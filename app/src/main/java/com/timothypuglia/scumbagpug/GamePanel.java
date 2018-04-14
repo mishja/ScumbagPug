@@ -157,6 +157,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
                 break;
         }
 
+        // Hide pause button
+        Game.pauseButton.setVisibility(View.GONE);
+
         //we can safely start the game loop
         thread.setRunning(true);
         thread.start();
@@ -175,6 +178,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
 
             if (!player.getPlaying()){
                 player.setPlaying(true);
+                Game.pauseButton.setVisibility(View.VISIBLE);
             }
             else {
                 player.setJumping(true);

@@ -50,15 +50,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
                 android:layout_margin="20dp"
+                android:fontFamily="monospace"
                 android:text="SCUMBAG PUG"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_orange_dark"
-                android:textSize="54sp"
+                android:textSize="75sp"
                 android:textStyle="bold"
                 android:typeface="monospace" />
 
@@ -102,8 +102,9 @@
                 android:id="@+id/player1NameATV"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_gravity="center"
+                android:inputType=""
                 android:textAlignment="center"
                 android:focusable="true"
                 android:focusableInTouchMode="true"

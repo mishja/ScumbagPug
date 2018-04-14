@@ -3,7 +3,9 @@ package com.timothypuglia.scumbagpug;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.graphics.TypefaceCompatUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsMessage;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 //private Map<String, Integer> playerMap;
 //
@@ -26,11 +29,14 @@ import android.widget.ImageView;
 
 public class mainMenu extends Activity {
 
-    public AutoCompleteTextView player1NameATV;
+    public static AutoCompleteTextView player1NameATV;
+    public TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       TypeFaceUtil.overrideFont(getApplicationContext(),"serif","fonts/concertone-regular.ttf");
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -50,6 +56,10 @@ public class mainMenu extends Activity {
 
         player1NameATV = (AutoCompleteTextView)findViewById(R.id.player1NameATV);
         // these are the trees
+        Typeface tf= Typeface.createFromAsset(getAssets(),"fonts/concertone-regular.ttf");
+
+        title = (TextView)findViewById(R.id.title);
+        title.setTypeface(tf);
         final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
         final ImageView backgroundTwo = (ImageView) findViewById(R.id.background_two);
         final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, -1.0f); //MISCHA AFBLIJVEN
@@ -88,7 +98,6 @@ public class mainMenu extends Activity {
             }
         });
         animator2.start();
-
     }
 
     public void playButtonClicked(View view){

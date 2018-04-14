@@ -29,7 +29,7 @@ import java.lang.reflect.Type;
 public class Game extends Activity {
     private Player player;
     public static Button mainMenuButton;
-    private ImageButton pausebutton;
+    public static ImageButton pauseButton;
     private Thread thread;
     public static int levelDifficulty = 0;
     public static Button changeDifficultyButton;
@@ -124,7 +124,7 @@ public class Game extends Activity {
         mainMenuButton = (Button)findViewById(R.id.mainMenu);
         changeDifficultyButton = (Button)findViewById(R.id.changeDifficulty);
         playButton = (ImageView)findViewById(R.id.playbutton);
-        pausebutton = (ImageButton)findViewById(R.id.pausebutton);
+        pauseButton = (ImageButton)findViewById(R.id.pausebutton);
 
 
         mainMenuButton.setVisibility(View.GONE);

@@ -21,10 +21,11 @@ import org.w3c.dom.Text;
 public class gameoverscreen extends Activity {
 
     TextView tv_score;
-    private int score = 0;
+    private int score;
     public int highscore;
     public int highscore2;
     public int highscore3;
+    public String playerName;
     //  int lastScore;
 
     int best1, best2, best3;
@@ -47,27 +48,41 @@ public class gameoverscreen extends Activity {
         //SET CONTEXT
         setContentView(R.layout.activity_gameoverscreen);
 
+        //Text views
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         TextView highScoreLabel2 = (TextView) findViewById(R.id.highScoreLabel2);
         TextView highScoreLabel3 = (TextView) findViewById(R.id.highScoreLabel3);
 
-        int score = getIntent().getIntExtra("playerScore", 0); //playerScore komt uit Player
+        score = getIntent().getIntExtra("playerScore", 0); //playerScore komt uit Player
         scoreLabel.setText(score + "");
         System.out.println(score);
 
+        //Get highscores from sharedpreferences
         highscore = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score",0);
         highscore2 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0);
         highscore3 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score3",0);
+
+        //get playername
+        if(!mainMenu.player1NameATV.getText().toString().matches(""))
+        {System.out.println("PLayer is known");
+            System.out.println("player:"+mainMenu.player1NameATV.getText());
+            playerName = mainMenu.player1NameATV.getText().toString();
+            // not null not empty
+        }else {
+            playerName = "UNKNOWN_PLAYER";
+            System.out.println("Unkown player");
+            //null or empty
+        }
 
         if (score > highscore) {
             int temp = highscore;
             highscore = score;
             highscore2 = temp;
             int temp2 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0);
-
+            String name_highscore2 = HelperSharedPreferences.getSharedPreferencesString(getApplicationContext(),"Name_Highscore","");
             highscore3 = temp2;
-            highScoreLabel.setText("Highscore 1: " + score);
+            highScoreLabel.setText("Highscore 1: " + score+" "+playerName);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
             highScoreLabel3.setText("Highscore 3: " + highscore3);
             scoreLabel.setText("last score " + score);
@@ -76,6 +91,10 @@ public class gameoverscreen extends Activity {
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score",score);
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score2",temp);
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score3",temp2);
+            //name
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore3",HelperSharedPreferences.getSharedPreferencesString(getApplicationContext(),"Name_Highscore2",""));
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore2",HelperSharedPreferences.getSharedPreferencesString(getApplicationContext(),"Name_Highscore",""));
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore",playerName);
 
         } else if (score > highscore2) {
             int temp = highscore2;
@@ -90,7 +109,9 @@ public class gameoverscreen extends Activity {
             //save that stuff
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score2",score);
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score3",highscore3);
-
+            //name
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore3",HelperSharedPreferences.getSharedPreferencesString(getApplicationContext(),"Name_Highscore2",""));
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore2",playerName);
 
         } else if (score > highscore3) {
             //   int temp = highscore3;
@@ -102,6 +123,8 @@ public class gameoverscreen extends Activity {
 
             //save that stuff
             HelperSharedPreferences.putSharedPreferencesInt(getApplicationContext(),"High_score3",score);
+            //name
+            HelperSharedPreferences.putSharedPreferencesString(getApplicationContext(),"Name_Highscore3",playerName);
 
         } else { //deze gaat nog mis
 
@@ -109,9 +132,6 @@ public class gameoverscreen extends Activity {
             highscore2 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0);
             highscore3 = HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score3",0);
 
-//            highscore = settings.getInt("High_score", 0);
-//            highscore2 = settings.getInt("High_score2", 0);
-//            highscore3 = settings.getInt("High_score3", 0);
 
             highScoreLabel.setText("Highscore 1: " + highscore);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
