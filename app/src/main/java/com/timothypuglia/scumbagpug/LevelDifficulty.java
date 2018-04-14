@@ -3,6 +3,7 @@ package com.timothypuglia.scumbagpug;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,9 +12,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-/**
- * Created by Mischa de Haan on 9-4-2018.
- */
+import java.util.logging.Level;
+
+
 
 public class LevelDifficulty extends Activity {
 
@@ -83,18 +84,22 @@ public class LevelDifficulty extends Activity {
     public void easyButtonClicked(View view){
     Intent intent = new Intent(this,Game.class);
     intent.putExtra("levelDifficulty",0);
+//    MediaPlayer mediaPlayer= MediaPlayer.create(LevelDifficulty.this,R.raw.dead1);
+    mainMenu.mediaPlayer.pause();
     startActivity(intent);
     }
 
     public void mediumButtonClicked(View view){
         Intent intent = new Intent(this,Game.class);
         intent.putExtra("levelDifficulty",1);
+        mainMenu.mediaPlayer.pause();
         startActivity(intent);
     }
 
     public void hardButtonClicked(View view){
         Intent intent = new Intent(this,Game.class);
         intent.putExtra("levelDifficulty",2);
+        mainMenu.mediaPlayer.pause();
         startActivity(intent);
     }
 

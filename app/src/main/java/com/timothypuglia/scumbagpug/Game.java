@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.*;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class Game extends Activity {
     public static Paint paint;
     public static Paint paint2;
     public int Highscore;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class Game extends Activity {
 
         //SET CONTEXT
         setContentView(R.layout.activity_game);
+        mediaPlayer= MediaPlayer.create(Game.this,R.raw.gamemusic2);
+        mediaPlayer.start();
 
         ////////////////// begin background animation ////////////////////////
 //        final ImageView backgroundOne = (ImageView) findViewById(R.id.background_one);
@@ -147,11 +151,16 @@ public class Game extends Activity {
     }
 
     public void menuButtonClicked(View view) {
+        mediaPlayer.stop();
         Intent intent = new Intent(this, mainMenu.class);
+
+
         startActivity(intent);
     }
 
     public void difficultyButtonClicked(View view) {
+        Game.mediaPlayer.stop();
+        mainMenu.mediaPlayer.start();
         Intent intent2 = new Intent(this, LevelDifficulty.class);
         startActivity(intent2);
     }

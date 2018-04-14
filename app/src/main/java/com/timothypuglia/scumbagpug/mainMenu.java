@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.graphics.TypefaceCompatUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class mainMenu extends Activity {
 
     public static AutoCompleteTextView player1NameATV;
     public TextView title;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,13 @@ public class mainMenu extends Activity {
         //turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        mediaPlayer= MediaPlayer.create(mainMenu.this,R.raw.gamemusic);
 
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        } else {
+        mediaPlayer.start();
+        }
         //set to full screen
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -105,8 +113,6 @@ public class mainMenu extends Activity {
         Intent intent = new Intent(this, LevelDifficulty.class);
         startActivity(intent);
     }
-
-
 
 
     public void scoreButtonClicked(View view){
