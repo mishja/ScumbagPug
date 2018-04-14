@@ -116,6 +116,7 @@ public class gameoverscreen extends Activity {
             highScoreLabel.setText("Highscore 1: " + highscore);
             highScoreLabel2.setText("Highscore 2: " + highscore2);
             highScoreLabel3.setText("Highscore 3: " + highscore3);
+            scoreLabel.setText("last score " + score);
 
         }
 
@@ -125,6 +126,11 @@ public class gameoverscreen extends Activity {
     public void tryAgain(View view) {
         Intent intent = new Intent(this, Game.class);
         intent.putExtra("levelDifficultyTryAgain",Game.levelDifficulty);
+        startActivity(intent);
+    }
+
+    public void mainMenu(View view) {
+        Intent intent = new Intent(this, mainMenu.class);
         startActivity(intent);
     }
 

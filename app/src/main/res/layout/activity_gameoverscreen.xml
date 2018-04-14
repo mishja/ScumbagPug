@@ -28,9 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Game Over"
-            android:textSize="60sp"
-            android:textColor="#ffffff" />
+            android:text="GAME OVER"
+            android:textSize="50sp"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
 
 
         <TextView
@@ -38,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:textSize="30sp"
             android:textColor="#ffffff" />
 
@@ -82,15 +84,29 @@
 
         </LinearLayout>
 
-        <ImageButton
+        <Button
             android:id="@+id/tryagainbutton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:onClick="tryAgain"
             android:background="@drawable/buttonshape"
-            android:text="Try Again" />
+            android:text= "Try Again"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"/>
+
+         <Button
+             android:id="@+id/mainmenubutton"
+             android:layout_width="wrap_content"
+             android:layout_height="50dp"
+             android:layout_gravity="center"
+             android:layout_marginTop="10dp"
+             android:onClick="mainMenu"
+             android:background="@drawable/buttonshape"
+             android:text= "Main menu"
+             android:textColor="#FFFFFF"
+             android:textSize="30sp"/>
 
     </LinearLayout>
 
