@@ -99,6 +99,14 @@
                     android:textColor="@android:color/holo_orange_dark"
                     android:textSize="20sp" />
 
+                <TextView
+                    android:id="@+id/rankingName1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Player"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/rankingScore1"
@@ -109,14 +117,7 @@
                     android:text="Score"
                     android:textSize="20sp"/>
 
-                <TextView
-                    android:id="@+id/rankingName1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Player"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/holo_orange_dark"
-                    android:textSize="20sp" />
+
 
 
             </TableRow>
@@ -230,7 +231,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="110dp"
             android:orientation="horizontal">
         <Button
             android:id="@+id/button"

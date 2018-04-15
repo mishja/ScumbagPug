@@ -35,6 +35,10 @@ public class ScoreBoard extends Activity {
     private TextView rankingNumber;
     private TextView rankingName;
     private TextView rankingScore;
+    private TextView ranking1;
+    private TextView ranking2;
+    private TextView ranking3;
+    private TextView ranking4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,10 @@ public class ScoreBoard extends Activity {
         highscoreName2=(TextView)findViewById(R.id.rankingName2);
         highscoreName3=(TextView)findViewById(R.id.rankingName3);
         highscoreName4=(TextView)findViewById(R.id.rankingName4);
+        ranking1 = (TextView)findViewById(R.id.ranking1);
+        ranking2 = (TextView)findViewById(R.id.ranking2);
+        ranking3 = (TextView)findViewById(R.id.ranking3);
+        ranking4 = (TextView)findViewById(R.id.ranking4);
         System.out.println("highscore: "+ HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score",0));
         System.out.println("Highscore 2: "+HelperSharedPreferences.getSharedPreferencesInt(getApplicationContext(),"High_score2",0));
 
@@ -99,6 +107,10 @@ public class ScoreBoard extends Activity {
         highscore2.setTypeface(tf);
         highscore3.setTypeface(tf);
         highscore4.setTypeface(tf);
+        ranking1.setTypeface(tf);
+        ranking2.setTypeface(tf);
+        ranking3.setTypeface(tf);
+        ranking4.setTypeface(tf);
     }
 
     //Button back to main menu
