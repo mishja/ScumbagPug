@@ -306,7 +306,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback,Sen
 //            Add houses on timer
             long housesElapsed = (System.nanoTime() - housesStartTime) / 1000000;
             // Check if previous house has entered completely
-                if (housesElapsed>390){
+                if (housesElapsed>600){
                     switch (houselist[l]){
                         case 0: housesStartTime = System.nanoTime();
                                 break;

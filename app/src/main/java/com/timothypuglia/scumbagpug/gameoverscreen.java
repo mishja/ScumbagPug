@@ -182,7 +182,6 @@ public class gameoverscreen extends Activity {
         mediaPlayer.stop();
         Intent intent = new Intent(this, Game.class);
         intent.putExtra("levelDifficultyTryAgain",Game.levelDifficulty);
-  //     MediaPlayer mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
 
         startActivity(intent);
     }
@@ -190,8 +189,7 @@ public class gameoverscreen extends Activity {
     public void mainMenu(View view) {
         mediaPlayer.stop();
         Intent intent = new Intent(this, mainMenu.class);
- //       MediaPlayer mediaPlayer= MediaPlayer.create(gameoverscreen.this,R.raw.dead1);
-  //      mediaPlayer.stop();
+
         startActivity(intent);
 
     }
